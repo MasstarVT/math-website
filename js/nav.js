@@ -10,11 +10,15 @@
   // The tabs, in order. A section's data-group is one of these ids.
   var GROUPS = [
     { id: 'geometry', label: 'Geometry', about: 'Shapes, tilings and a fourth dimension.' },
+    { id: 'topology', label: 'Graphs & topology', about: 'Dots joined by lines, and shapes that stay the same when you stretch them.' },
     { id: 'fractals', label: 'Fractals', about: 'Shapes with smaller copies of themselves inside, all the way down.' },
     { id: 'dynamics', label: 'Chaos', about: 'Simple rules, repeated, that grow wild or build something nobody planned.' },
     { id: 'chance', label: 'Chance', about: 'Randomness, and the patterns it can’t help making.' },
     { id: 'numbers', label: 'Numbers', about: 'Patterns hiding in primes, sequences and times tables.' },
-    { id: 'motion', label: 'Curves & motion', about: 'Spinning circles, swinging pendulums, series, and the curves they trace.' }
+    { id: 'algebra', label: 'Algebra', about: 'Matrices, complex numbers and symmetries, seen as moves you can make.' },
+    { id: 'calculus', label: 'Calculus', about: 'Slopes, areas and infinite sums, built up one sliver at a time.' },
+    { id: 'motion', label: 'Curves & motion', about: 'Spinning circles, swinging pendulums, waves, and the curves they trace.' },
+    { id: 'algorithms', label: 'Algorithms', about: 'Step-by-step recipes for sorting, searching, solving and winning.' }
   ];
   // Sections with a missing or unknown data-group still show up, here.
   var OTHER = { id: 'other', label: 'More', about: '' };

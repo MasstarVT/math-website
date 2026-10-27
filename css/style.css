@@ -766,3 +766,47 @@ input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 2px var(
 }
 
 .footer p { margin: 0; }
+
+/* ---- Geometry ---- */
+
+/* Let vertical swipes over the orbit views still scroll the page on phones. */
+#conics canvas,
+#platonic canvas { touch-action: pan-y; }
+
+/* ---- Graphs & topology ---- */
+
+/* Batch 2: Graphs & topology. Every rule is scoped to one section. */
+
+/* Color swatches for painting the map. */
+#four-color .chip[data-color]::before {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  background: var(--sw);
+}
+
+#four-color .chip[data-color][aria-pressed="true"] {
+  color: var(--sw);
+  border-color: color-mix(in srgb, var(--sw) 55%, transparent);
+  background: color-mix(in srgb, var(--sw) 10%, transparent);
+}
+
+/* Let vertical swipes over the orbiting 3D canvases still scroll the page. */
+#mobius canvas,
+#euler-char canvas { touch-action: pan-y; }
+
+/* ---- Fractals ---- */
+
+/* Let vertical swipes over the orbiting 3D canvases still scroll the page on phones. */
+#menger canvas { touch-action: pan-y; }
+#terrain canvas { touch-action: pan-y; }
+
+/* ---- Algebra ---- */
+
+/* Let vertical swipes over the cube still scroll the page on phones. */
+#binomial-cube canvas { touch-action: pan-y; }
+
+/* ---- Calculus ---- */
+
+/* Let vertical swipes over Gabriel's horn still scroll the page on phones. */
+#gabriel canvas { touch-action: pan-y; }
