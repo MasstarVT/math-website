@@ -243,6 +243,16 @@ a { color: inherit; }
 
 .viz-stage canvas.is-drawing { cursor: crosshair; }
 
+/* A transparent 2D layer drawn over a WebGL canvas. */
+.viz-stage canvas.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border-color: transparent;
+  pointer-events: none;
+}
+
 .hint {
   margin: 4px 0 0;
   font-size: 14px;

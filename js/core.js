@@ -72,6 +72,53 @@
     return stage;
   }
 
+  // Drag handles on a canvas. opts.hit(x, y) returns the handle under a point
+  // (any truthy value) or null; opts.move(handle, x, y, first) follows the
+  // pointer and opts.end(handle) runs on release. Touches that miss every
+  // handle still scroll the page.
+  function drag(canvas, opts) {
+    var active = null;
+
+    function at(e) {
+      var r = canvas.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+
+    canvas.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) return;
+      var p = at(e.touches[0]);
+      if (opts.hit(p.x, p.y)) e.preventDefault();
+    }, { passive: false });
+
+    canvas.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      var p = at(e);
+      active = opts.hit(p.x, p.y);
+      if (!active) return;
+      e.preventDefault();
+      canvas.setPointerCapture(e.pointerId);
+      canvas.style.cursor = opts.cursor || '';
+      canvas.classList.add('is-grabbing');
+      opts.move(active, p.x, p.y, true);
+    });
+
+    canvas.addEventListener('pointermove', function (e) {
+      var p = at(e);
+      if (active) opts.move(active, p.x, p.y, false);
+      else if (e.pointerType === 'mouse') canvas.style.cursor = opts.hit(p.x, p.y) ? (opts.cursor || 'grab') : '';
+    });
+
+    function release() {
+      if (!active) return;
+      var h = active;
+      active = null;
+      canvas.classList.remove('is-grabbing');
+      if (opts.end) opts.end(h);
+    }
+    canvas.addEventListener('pointerup', release);
+    canvas.addEventListener('pointercancel', release);
+  }
+
   // Look up a [data-ctl] element inside a section.
   function ctl(section, name) {
     return section.querySelector('[data-ctl="' + name + '"]');
@@ -165,6 +212,7 @@
   window.MathViz = {
     reducedMotion: reducedMotion,
     createStage: createStage,
+    drag: drag,
     ctl: ctl,
     segmented: segmented,
     setSegmented: setSegmented,

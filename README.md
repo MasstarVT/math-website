@@ -19,6 +19,26 @@ Interactive visualizations of mathematics you can watch move:
 13. **The Monty Hall problem**: staying versus switching, with 3, 10 or 100 doors.
 14. **Buffon's needle**: estimating π by dropping needles on a lined floor, or darts at a circle in a square.
 15. **The birthday paradox**: random rooms of people against the exact chance of a shared birthday.
+16. **The Game of Life**: Conway's cellular automaton, with a glider gun, other starting patterns and a grid you can draw on.
+17. **The road to chaos**: the logistic map's bifurcation diagram, period doubling and the window of period 3.
+18. **The Collatz conjecture**: thousands of 3n + 1 paths drawn backwards from 1 so they grow into a plant.
+19. **Recamán's sequence**: back if you can, forward if you must, drawn as arcs, with optional sound.
+20. **The Koch snowflake**: infinite perimeter around a finite area, with a magnifier.
+21. **The Hilbert curve**: a line that fills a square, plus the closed Moore curve.
+22. **The Pythagoras tree**: squares and right triangles, where every generation adds up to the trunk's area.
+23. **The sandpile**: grains that topple at 4, poured at the center, and the pile that acts like zero.
+24. **Penrose tiling**: fat and thin rhombuses that never repeat, with a fat-to-thin ratio closing in on the golden ratio.
+25. **Voronoi diagrams**: nearest-point cells you can drag, with the Delaunay triangulation.
+26. **Newton's fractal**: which root Newton's method finds from each starting guess, with draggable roots (WebGL).
+27. **The spirograph**: gears, pen holes and the greatest common divisor.
+28. **The harmonograph**: drawings made by damped pendulums, and the Lissajous figures inside them.
+29. **The pendulum wave**: fifteen pendulums drifting through waves and lining up again each minute.
+30. **Euler's formula**: (1 + iθ/n)^n walking around the circle to e^(iπ) = −1.
+31. **Taylor series**: polynomials copying sin x, eˣ, 1/(1 + x²) and ln(1 + x), and where they stop working.
+32. **Benford's law**: the leading digits of powers of 2, Fibonacci numbers, factorials and random data.
+33. **Growing crystals**: diffusion-limited aggregation from a seed or from the ground.
+34. **The brachistochrone**: beads racing down four tracks, where the cycloid always wins.
+35. **The Apollonian gasket**: touching circles whose curvatures are all whole numbers.
 
 Plain HTML, CSS and JavaScript. No build step and no dependencies.
 

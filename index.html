@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unfolded: math you can watch</title>
-  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, Fourier circles, the butterfly effect, prime spirals, fractals, the bell curve, coin flips, the Monty Hall problem, Buffon's needle and the birthday paradox.">
+  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, Fourier circles, the butterfly effect, prime spirals, fractals, the bell curve, coin flips, the Monty Hall problem, Buffon's needle, the birthday paradox, the Game of Life, chaos in the logistic map, the Collatz conjecture, Recamán's sequence, the Koch snowflake, the Hilbert curve, the Pythagoras tree, sandpiles, Penrose tiling, Voronoi diagrams, Newton's fractal, the spirograph, the harmonograph, the pendulum wave, Euler's formula, Taylor series, Benford's law, growing crystals, the brachistochrone and the Apollonian gasket.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' fill='none' stroke='%23ffb454' stroke-width='2'/%3E%3Crect x='10' y='10' width='12' height='12' fill='none' stroke='%236ee7ff' stroke-width='2'/%3E%3Cpath d='M3 3l7 7M29 3l-7 7M3 29l7-7M29 29l-7-7' stroke='%23ece8df' stroke-width='1.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +31,33 @@
       <a href="#monty">13 Monty Hall</a>
       <a href="#buffon">14 Needles</a>
       <a href="#birthday">15 Birthdays</a>
+      <a href="#life">16 Life</a>
+      <a href="#logistic">17 Chaos road</a>
+      <a href="#collatz">18 Collatz</a>
+      <a href="#recaman">19 Recamán</a>
+      <a href="#koch">20 Snowflake</a>
+      <a href="#hilbert">21 Hilbert</a>
+      <a href="#pythagoras">22 Pythagoras</a>
+      <a href="#sandpile">23 Sandpile</a>
+      <a href="#penrose">24 Penrose</a>
+      <a href="#voronoi">25 Voronoi</a>
+      <a href="#newton">26 Newton</a>
+      <a href="#spirograph">27 Spirograph</a>
+      <a href="#harmonograph">28 Harmonograph</a>
+      <a href="#pendulums">29 Pendulums</a>
+      <a href="#euler">30 Euler</a>
+      <a href="#taylor">31 Taylor</a>
+      <a href="#benford">32 Benford</a>
+      <a href="#dla">33 Crystals</a>
+      <a href="#cycloid">34 Quickest path</a>
+      <a href="#apollonian">35 Circles</a>
     </div>
   </nav>
 
   <header class="hero" id="top">
     <p class="eyebrow">Interactive mathematics</p>
     <h1>Unfolded</h1>
-    <p class="lede">Fifteen ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
+    <p class="lede">Thirty-five ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
     <ol class="toc">
       <li><a href="#tesseract"><span>01</span>A cube from the fourth dimension</a></li>
       <li><a href="#dragon"><span>02</span>A dragon made of right angles</a></li>
@@ -54,6 +74,26 @@
       <li><a href="#monty"><span>13</span>The door you should switch to</a></li>
       <li><a href="#buffon"><span>14</span>Finding π by dropping needles</a></li>
       <li><a href="#birthday"><span>15</span>Why 23 people probably share a birthday</a></li>
+      <li><a href="#life"><span>16</span>Cells that live, die and walk</a></li>
+      <li><a href="#logistic"><span>17</span>One formula's road to chaos</a></li>
+      <li><a href="#collatz"><span>18</span>A puzzle nobody can prove</a></li>
+      <li><a href="#recaman"><span>19</span>A sequence that loops back</a></li>
+      <li><a href="#koch"><span>20</span>An infinite fence around a snowflake</a></li>
+      <li><a href="#hilbert"><span>21</span>A line that fills a square</a></li>
+      <li><a href="#pythagoras"><span>22</span>A tree grown from a² + b² = c²</a></li>
+      <li><a href="#sandpile"><span>23</span>Patterns from toppling sand</a></li>
+      <li><a href="#penrose"><span>24</span>Tiles that never repeat</a></li>
+      <li><a href="#voronoi"><span>25</span>Who's nearest?</a></li>
+      <li><a href="#newton"><span>26</span>Which answer does a guess find?</a></li>
+      <li><a href="#spirograph"><span>27</span>Gears, teeth and common factors</a></li>
+      <li><a href="#harmonograph"><span>28</span>Drawings made by pendulums</a></li>
+      <li><a href="#pendulums"><span>29</span>Fifteen pendulums, one minute</a></li>
+      <li><a href="#euler"><span>30</span>How e^(iπ) lands on −1</a></li>
+      <li><a href="#taylor"><span>31</span>Polynomials that copy curves</a></li>
+      <li><a href="#benford"><span>32</span>Why so many numbers start with 1</a></li>
+      <li><a href="#dla"><span>33</span>Crystals grown from random walks</a></li>
+      <li><a href="#cycloid"><span>34</span>The quickest way down</a></li>
+      <li><a href="#apollonian"><span>35</span>Circles all the way down</a></li>
     </ol>
   </header>
 
@@ -636,6 +676,713 @@
       </div>
     </section>
 
+    <!-- 16 Game of Life -->
+    <section class="viz" id="life" style="--accent: var(--green)">
+      <div class="viz-text">
+        <p class="kicker"><b>16</b> A game with no players</p>
+        <h2>The Game of Life</h2>
+        <p>Take a grid of cells, each one alive or dead. At every tick, a live cell with two or three live neighbors survives and a dead cell with exactly three comes alive. Every other cell dies or stays empty. John Conway chose these rules in 1970. You only pick where to start.</p>
+        <p>Some shapes sit still, some blink, and some walk. The glider shuffles diagonally forever. Bill Gosper found a gun that fires a new glider every 30 ticks, which proved that a pattern can grow without limit. People have since built working computers out of gliders, so anything a computer can do, Life can do too.</p>
+        <p>Draw your own on the grid. The R-pentomino is only 5 cells, yet on an unlimited grid it churns for 1,103 generations before it settles.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Conway's Game of Life on a grid you can draw on"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Click or drag to draw cells</span><span>Newborn cells glow white and cool to blue as they age</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">One generation</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Clear</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Start with</span>
+          <div class="seg" data-ctl="preset">
+            <button type="button" aria-pressed="true" data-value="gun">Glider gun</button>
+            <button type="button" aria-pressed="false" data-value="rpent">R-pentomino</button>
+            <button type="button" aria-pressed="false" data-value="acorn">Acorn</button>
+            <button type="button" aria-pressed="false" data-value="random">Random</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="1" max="60" step="1" value="15">
+        </label>
+      </div>
+    </section>
+
+    <!-- 17 Logistic map -->
+    <section class="viz" id="logistic" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>17</b> x → r·x·(1 − x)</p>
+        <h2>The road to chaos</h2>
+        <p>Here is a tiny model of a population. Next year's size is r times this year's, held back by crowding: x becomes r·x·(1 − x), where x runs from 0 (empty) to 1 (full). For small r the population settles on one value. Past r = 3 it can't settle, and it flips between a boom year and a bust year.</p>
+        <p>Turn r up and the cycle of 2 splits into 4, then 8, then 16, each split arriving about 4.669 times sooner than the last. By r ≈ 3.57 the splits pile up and the values never repeat. That's chaos, from a formula you could work out on paper. Mitchell Feigenbaum found the same 4.669 in every process shaped like this single hump, and it has been measured in real fluids and circuits.</p>
+        <p>Deep in the chaos there are calm windows. Near 3.83 a cycle of 3 appears, then splits into 6, 12, 24: a tiny copy of the whole picture.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Bifurcation diagram of the logistic map, with the values at one chosen r below it"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Top: every value x keeps returning to, for each r. Drag the dashed line or click to pick r.</span><span>Bottom: x, one step at a time, at that r</span></figcaption>
+      </figure>
+      <div class="controls">
+        <label class="control">
+          <span class="control-label">r <output data-ctl="r-out"></output></span>
+          <input type="range" data-ctl="r" min="2.5" max="4" step="0.0005" value="3.2">
+        </label>
+        <div class="control">
+          <span class="control-label">Try</span>
+          <div class="seg" data-ctl="preset">
+            <button type="button" aria-pressed="false" data-value="2.8">One value</button>
+            <button type="button" aria-pressed="true" data-value="3.2">Cycle of 2</button>
+            <button type="button" aria-pressed="false" data-value="3.5">Cycle of 4</button>
+            <button type="button" aria-pressed="false" data-value="3.83">Cycle of 3</button>
+            <button type="button" aria-pressed="false" data-value="3.9">Chaos</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="control-label">View</span>
+          <div class="seg" data-ctl="view">
+            <button type="button" aria-pressed="true" data-value="whole">Whole map</button>
+            <button type="button" aria-pressed="false" data-value="doubling">The splits</button>
+            <button type="button" aria-pressed="false" data-value="three">Inside the window of 3</button>
+          </div>
+        </div>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false" data-ctl="sweep">Sweep r back and forth</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18 Collatz -->
+    <section class="viz" id="collatz" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>18</b> Halve it, or triple it and add 1</p>
+        <h2>The Collatz conjecture</h2>
+        <p>Pick any whole number. If it's even, halve it. If it's odd, triple it and add 1. Repeat. Start at 27 and you climb as high as 9,232 before crashing down to 1 after 111 steps. Every number anyone has tried ends at 1. Computers have checked every starting number past 100 quintillion, but nobody can prove that all of them do.</p>
+        <p>Here every path is drawn backwards from 1. Each even step bends one way and each odd step bends the other. Paths that end the same way share a stem, so thousands of them grow into one plant. The white line is the number you're following.</p>
+        <p>Change the two bends to grow seaweed, coral or a tight curl.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Collatz paths for thousands of numbers, drawn backwards from 1 so they grow into a plant"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Brighter where many paths overlap</span><span>Color: how many steps a number takes to reach 1</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Follow</span>
+          <div class="seg mono" data-ctl="follow">
+            <button type="button" aria-pressed="false" data-value="7">7</button>
+            <button type="button" aria-pressed="true" data-value="27">27</button>
+            <button type="button" aria-pressed="false" data-value="97">97</button>
+            <button type="button" aria-pressed="false" data-value="871">871</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Numbers <output data-ctl="count-out"></output></span>
+          <input type="range" data-ctl="count" min="100" max="20000" step="100" value="5000">
+        </label>
+        <label class="control">
+          <span class="control-label">Bend on even steps <output data-ctl="even-out"></output></span>
+          <input type="range" data-ctl="even" min="0" max="20" step="0.1" value="8">
+        </label>
+        <label class="control">
+          <span class="control-label">Bend on odd steps <output data-ctl="odd-out"></output></span>
+          <input type="range" data-ctl="odd" min="0" max="30" step="0.1" value="16">
+        </label>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="regrow">Grow it again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 19 Recamán -->
+    <section class="viz" id="recaman" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>19</b> Back if you can, forward if you must</p>
+        <h2>Recamán's sequence</h2>
+        <p>Start at 0. On step 1 jump 1, on step 2 jump 2, and so on. Each time, jump backward if you'd land on a positive number you haven't visited yet. Otherwise jump forward. That gives 0, 1, 3, 6, 2, 7, 13, 20, 12, …</p>
+        <p>Draw every jump as a half circle and the sequence weaves itself into loops. The rule tries not to repeat itself, but forward jumps can land on old numbers: 42 is reached on step 20 and again on step 24. Nobody knows whether every whole number is reached eventually. Some small ones hold out for a very long time.</p>
+        <p>Turn on the sound to hear it. Each jump plays a note for the number it lands on.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Recamán's sequence drawn as half circles above and below a number line"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Odd steps arc above the line, even steps below</span><span>Readout: the smallest number still waiting its turn</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Steps <output data-ctl="steps-out"></output></span>
+          <input type="range" data-ctl="steps" min="10" max="1000" step="1" value="75">
+        </label>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0" max="7" step="0.25" value="2">
+        </label>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false" data-ctl="sound">Sound</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 Koch snowflake -->
+    <section class="viz" id="koch" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>20</b> Infinite edge, finite area</p>
+        <h2>The Koch snowflake</h2>
+        <p>Start with a triangle. Split every edge into thirds and push a smaller triangle out of each middle third. Then do the same to every new edge, forever.</p>
+        <p>Every round makes the edge 4/3 as long, so after enough rounds it's longer than any distance you can name. Yet the whole snowflake fits inside a circle, and its area closes in on exactly 8/5 of the triangle you started with. It's an infinitely long fence around a field of ordinary size.</p>
+        <p>Magnify any piece and you find the same bumps again. Coastlines behave like this too: the shorter your ruler, the longer the coast you measure.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="The Koch snowflake gaining bumps round by round, with a magnifier"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Hover or tap to magnify 4×</span><span>Anti-snowflake: the same bumps pushed inward. Its area closes in on 2/5.</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Round <output data-ctl="level-out"></output></span>
+          <input type="range" data-ctl="level" min="0" max="6" step="1" value="0">
+        </label>
+        <div class="control">
+          <span class="control-label">Shape</span>
+          <div class="seg" data-ctl="shape">
+            <button type="button" aria-pressed="true" data-value="snow">Snowflake</button>
+            <button type="button" aria-pressed="false" data-value="anti">Anti-snowflake</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21 Hilbert curve -->
+    <section class="viz" id="hilbert" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>21</b> A line that fills a square</p>
+        <h2>The Hilbert curve</h2>
+        <p>Can a line with no thickness fill a whole square? In 1891 David Hilbert showed how. Split the square into four and visit the quarters in a U shape. Then split every quarter into four and swap each visit for a smaller U, turned so the ends join up. Repeat.</p>
+        <p>Each order roughly doubles the length of the line, yet it never leaves the square and never crosses itself. Carried on forever, it passes through every single point of the square.</p>
+        <p>It also keeps neighbors together: stops close along the line land close together in the square. That's why it's used to store map and image data. Watch the white dot move steadily along the strip below while it wanders all over the square.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A Hilbert curve growing order by order, with the same line pulled straight below it"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>The strip is the line pulled straight. Color marks the way along it.</span><span>Hover or tap a cell to find its place on the strip</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Order <output data-ctl="order-out"></output></span>
+          <input type="range" data-ctl="order" min="1" max="8" step="1" value="1">
+        </label>
+        <div class="control">
+          <span class="control-label">Curve</span>
+          <div class="seg" data-ctl="kind">
+            <button type="button" aria-pressed="true" data-value="hilbert">Hilbert</button>
+            <button type="button" aria-pressed="false" data-value="moore">Moore, a closed loop</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 Pythagoras tree -->
+    <section class="viz" id="pythagoras" style="--accent: var(--green)">
+      <div class="viz-text">
+        <p class="kicker"><b>22</b> a² + b² = c²</p>
+        <h2>The Pythagoras tree</h2>
+        <p>Put a right triangle on top of a square, then build a square on each of the triangle's two shorter sides. Do the same on top of those two squares, and again, and a tree grows.</p>
+        <p>Pythagoras' theorem says the two smaller squares together have exactly the area of the square they grow from. So every generation of squares adds up to the area of the trunk, whatever the angle. Point at any square to check.</p>
+        <p>The Dutch maths teacher Albert Bosman first drew this tree in 1942. At 45° it's symmetric. Lean the angle over and it curls like a fern.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A Pythagoras tree of squares and right triangles"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Hover or tap a square to compare it with its two squares</span><span>Color: generation</span></figcaption>
+      </figure>
+      <div class="controls">
+        <label class="control">
+          <span class="control-label">Triangle angles <output data-ctl="angle-out"></output></span>
+          <input type="range" data-ctl="angle" min="10" max="80" step="1" value="45">
+        </label>
+        <label class="control">
+          <span class="control-label">Generations <output data-ctl="gens-out"></output></span>
+          <input type="range" data-ctl="gens" min="1" max="14" step="1" value="11">
+        </label>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true" data-ctl="wind">Wind</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 23 Sandpile -->
+    <section class="viz" id="sandpile" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>23</b> Four grains and it topples</p>
+        <h2>The sandpile</h2>
+        <p>Drop grains of sand onto a grid. A square can hold up to 3 grains. Give it a 4th and it topples, passing one grain to each of its four neighbors, which may topple in turn. Grains pushed off the edge are gone.</p>
+        <p>Pour at the center and a pattern grows that nobody designed: nested triangles, stripes and four-fold symmetry, sharper the more sand you add. The order in which squares topple never matters. The final pile always comes out the same, which is why it's called the abelian sandpile.</p>
+        <p>Per Bak, Chao Tang and Kurt Wiesenfeld introduced it in 1987 as a model of systems that tune themselves to the edge of collapse. The piles you get after pouring for a long time can even be added like numbers: pour one onto another and topple. One of them acts like zero and leaves every other one unchanged. Choose "The pile that acts like zero" to build it.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="An abelian sandpile growing from grains poured at the center"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Dark: empty. Blue, pink, amber: 1, 2 and 3 grains. White: about to topple.</span><span>The view zooms out as the pile grows</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Sand</span>
+          <div class="seg" data-ctl="mode">
+            <button type="button" aria-pressed="true" data-value="pour">Pour at the center</button>
+            <button type="button" aria-pressed="false" data-value="identity">The pile that acts like zero</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="rate-out"></output></span>
+          <input type="range" data-ctl="rate" min="0" max="12" step="1" value="6">
+        </label>
+      </div>
+    </section>
+
+    <!-- 24 Penrose tiling -->
+    <section class="viz" id="penrose" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>24</b> Order without repeats</p>
+        <h2>Penrose tiling</h2>
+        <p>Square tiles repeat: slide the floor over by one tile and it lands on itself. Roger Penrose found tiles that cover a floor forever without gaps, yet can never repeat. However far you slide the pattern, it never matches up.</p>
+        <p>Here there are just two tiles, a fat rhombus and a thin one. Each round cuts every tile into smaller fat and thin pieces by the same rule. Count them and the ratio of fat to thin closes in on the golden ratio, 1.618…, which isn't a fraction. A repeating floor would give a fraction, so this one can't repeat.</p>
+        <p>Five-fold symmetry like this was thought impossible in crystals until Dan Shechtman found it in a metal alloy in 1982. It won him the 2011 Nobel Prize in Chemistry. In 2023 a hobbyist, David Smith, found a single tile that does the job alone: the hat.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A Penrose tiling of fat and thin rhombuses, built by repeated subdivision"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Gold: fat rhombuses. Pink: thin ones. Try coloring by direction.</span><span>Each round shrinks the tiles by the golden ratio</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Rounds <output data-ctl="gen-out"></output></span>
+          <input type="range" data-ctl="gen" min="0" max="7" step="1" value="5">
+        </label>
+        <div class="control">
+          <span class="control-label">Color by</span>
+          <div class="seg" data-ctl="color">
+            <button type="button" aria-pressed="true" data-value="shape">Shape</button>
+            <button type="button" aria-pressed="false" data-value="direction">Direction</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 25 Voronoi -->
+    <section class="viz" id="voronoi" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>25</b> Who's nearest?</p>
+        <h2>Voronoi diagrams</h2>
+        <p>Scatter some points, then color every spot on the plane by whichever point is closest. The plane breaks into cells with straight edges, one cell per point. Every edge lies exactly halfway between two points, and every corner is equally far from three.</p>
+        <p>The pattern turns up in giraffe skin, dried mud, dragonfly wings and the areas served by cell towers. In 1854 John Snow drew a boundary like this around a London water pump to show that cholera deaths clustered near it.</p>
+        <p>Join each pair of points whose cells touch and you get the Delaunay triangulation, which avoids thin sliver triangles as well as any triangulation can. Map makers and 3D software use it to turn scattered points into a mesh.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A Voronoi diagram of drifting points that you can drag and add to"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Drag a point to move it. Click empty space to add one.</span><span>White lines: the Delaunay triangulation</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true" data-ctl="drift">Drift</button>
+          <button type="button" class="chip" aria-pressed="false" data-ctl="delaunay">Delaunay triangulation</button>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="scatter">Scatter new points</button>
+          <button type="button" class="btn ghost" data-ctl="clear">Start from one point</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 26 Newton's fractal -->
+    <section class="viz" id="newton" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>26</b> Slide down the tangent</p>
+        <h2>Newton's fractal</h2>
+        <p>Newton's method solves equations by guessing. Start with a guess, follow the curve's tangent line down to zero, and use that point as the next guess. Close to an answer it homes in fast, roughly doubling the number of correct digits with every step.</p>
+        <p>But which answer does it find? Color every starting point in the plane of complex numbers by the root it ends up at. Each root sits in a calm patch of its own color. Between them the borders break into chains of beads, and wherever two colors meet, all the others are there too.</p>
+        <p>Drag the roots and the borders rearrange. A step size other than 1 overshoots or undershoots each time and gives the borders a different texture.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Newton's method fractal: each point colored by the root it converges to"></canvas>
+        <canvas class="overlay" aria-hidden="true"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Drag the ringed dots, the roots. Hover or tap to follow one guess.</span><span>Darker: more steps needed</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Roots</span>
+          <div class="seg" data-ctl="roots">
+            <button type="button" aria-pressed="true" data-value="3">3</button>
+            <button type="button" aria-pressed="false" data-value="4">4</button>
+            <button type="button" aria-pressed="false" data-value="5">5</button>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="shuffle">Scatter the roots</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Step size <output data-ctl="step-out"></output></span>
+          <input type="range" data-ctl="step" min="0.5" max="1.8" step="0.01" value="1">
+        </label>
+      </div>
+    </section>
+
+    <!-- 27 Spirograph -->
+    <section class="viz" id="spirograph" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>27</b> Gears and a pen</p>
+        <h2>The spirograph</h2>
+        <p>A toothed gear rolls around the inside of a toothed ring, with a pen through a hole in the gear. How many laps until the pattern closes? Count the teeth. With a 96-tooth ring and a 30-tooth gear, the largest number that divides both is 6, so the pen returns to its start after 30 ÷ 6 = 5 laps, having drawn 96 ÷ 6 = 16 points.</p>
+        <p>A gear that shares no factor with 96, like one with 35 teeth, has to make 35 laps and draws 96 points. It's the greatest common divisor at work, the same arithmetic you use to simplify fractions.</p>
+        <p>Move the pen toward the gear's edge for sharp loops, or toward its center for gentle waves. Roll the gear around the outside of the ring for a different family of curves.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A spirograph gear rolling inside a ring and drawing a pattern"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>White dot: the pen</span><span>Color shows how far through the drawing it is</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="redraw">Draw again</button>
+          <button type="button" class="btn ghost" data-ctl="random">Surprise me</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Gear <output data-ctl="gear-out"></output></span>
+          <input type="range" data-ctl="gear" min="10" max="90" step="1" value="30">
+        </label>
+        <label class="control">
+          <span class="control-label">Pen hole <output data-ctl="pen-out"></output></span>
+          <input type="range" data-ctl="pen" min="0.1" max="1" step="0.01" value="0.75">
+        </label>
+        <div class="control">
+          <span class="control-label">Roll the gear</span>
+          <div class="seg" data-ctl="side">
+            <button type="button" aria-pressed="true" data-value="inside">Inside the ring</button>
+            <button type="button" aria-pressed="false" data-value="outside">Outside the ring</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0.25" max="8" step="0.25" value="1">
+        </label>
+      </div>
+    </section>
+
+    <!-- 28 Harmonograph -->
+    <section class="viz" id="harmonograph" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>28</b> Pendulums with a pen</p>
+        <h2>The harmonograph</h2>
+        <p>Victorian parlors had a drawing machine run by pendulums: one swings the pen left and right, another swings it up and down. When the two swing in a simple ratio like 2 to 3, the pen traces a Lissajous figure, a closed knot that repeats exactly.</p>
+        <p>Real pendulums lose energy, so the knot slowly shrinks toward the center. Detune one pendulum slightly and the knot also turns as it shrinks, laying down a spiral of overlapping loops. A third pendulum that swings the paper in circles adds the familiar swirl.</p>
+        <p>Set the detune and the damping to none and switch off the paper to see the pure Lissajous figure.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A harmonograph drawing made by damped pendulums"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Color runs from the first swing to the last</span><span>White dot: the pen right now</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="new">New drawing</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Left–right to up–down</span>
+          <div class="seg mono" data-ctl="ratio">
+            <button type="button" aria-pressed="false" data-value="1:1">1 : 1</button>
+            <button type="button" aria-pressed="false" data-value="1:2">1 : 2</button>
+            <button type="button" aria-pressed="true" data-value="2:3">2 : 3</button>
+            <button type="button" aria-pressed="false" data-value="3:4">3 : 4</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Detune <output data-ctl="detune-out"></output></span>
+          <input type="range" data-ctl="detune" min="0" max="0.03" step="0.001" value="0.006">
+        </label>
+        <label class="control">
+          <span class="control-label">Damping <output data-ctl="damping-out"></output></span>
+          <input type="range" data-ctl="damping" min="0" max="0.03" step="0.001" value="0.006">
+        </label>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true" data-ctl="paper">Swinging paper</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 29 Pendulum wave -->
+    <section class="viz" id="pendulums" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>29</b> Fifteen pendulums, one minute</p>
+        <h2>The pendulum wave</h2>
+        <p>Hang 15 pendulums in a row, each a little shorter than the last. Tune them so that in one minute the first swings exactly 51 times, the next 52, the next 53, and so on up to 65. Then let them all go at once.</p>
+        <p>They drift apart into traveling waves, snakes and braids. Halfway through the minute each pendulum is half a swing ahead of the one before it, so they split into two alternating rows. At a third of the minute the pattern repeats every 3 pendulums, and at a quarter every 4. At the full minute every pendulum has made a whole number of swings, and they line up again.</p>
+        <p>None of it is random: the pattern at any moment depends only on the fraction of the minute that has passed. Drag the time slider to jump to those fractions.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A row of pendulums seen from above, drifting in and out of wave patterns"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Seen from above: each bob swings up and down the screen</span><span>Each pendulum swings once more per minute than the one to its left</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Back to the start</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Time, in seconds</span>
+          <input type="range" data-ctl="time" min="0" max="60" step="0.1" value="0">
+        </label>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="-2" max="3" step="0.5" value="0">
+        </label>
+        <div class="control">
+          <span class="control-label">Pendulums</span>
+          <div class="seg" data-ctl="count">
+            <button type="button" aria-pressed="false" data-value="12">12</button>
+            <button type="button" aria-pressed="true" data-value="15">15</button>
+            <button type="button" aria-pressed="false" data-value="24">24</button>
+          </div>
+        </div>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false" data-ctl="join">Join the bobs</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 30 Euler's formula -->
+    <section class="viz" id="euler" style="--accent: var(--green)">
+      <div class="viz-text">
+        <p class="kicker"><b>30</b> e^(iπ) = −1</p>
+        <h2>Euler's formula</h2>
+        <p>Put $1 in a bank that pays 100% interest a year. Paid once, you end the year with $2. Paid monthly, about $2.61. Paid every instant, about $2.718: the number e. That's what e to a power means: e^x is what (1 + x/n)^n closes in on as n grows.</p>
+        <p>Now make x imaginary: iπ. Multiplying by 1 + iπ/n hardly grows a number at all. Instead it turns it a little, plus a tiny stretch. Do that n times and you've turned about π radians, half a circle. As n grows the stretch fades away and you land exactly on −1. So e^(iπ) + 1 = 0, a single line linking five of the most important numbers in mathematics.</p>
+        <p>Each colored triangle is one step, and they're all the same shape. Try θ = 2π to go all the way around.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="The product (1 + iθ/n) to the n, drawn as a path that closes in on the unit circle"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Dashed: the unit circle. White ring: where the limit lands, e^(iθ).</span><span>White dot: where n steps get you</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true" data-ctl="grow">Keep doubling n</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Steps n <output data-ctl="n-out"></output></span>
+          <input type="range" data-ctl="n" min="0" max="8" step="0.01" value="2">
+        </label>
+        <label class="control">
+          <span class="control-label">Angle θ <output data-ctl="theta-out"></output></span>
+          <input type="range" data-ctl="theta" min="0" max="6.2832" step="0.001" value="3.1416">
+        </label>
+        <div class="control">
+          <span class="control-label">Try</span>
+          <div class="seg mono" data-ctl="preset">
+            <button type="button" aria-pressed="false" data-value="0.5">π/2</button>
+            <button type="button" aria-pressed="true" data-value="1">π</button>
+            <button type="button" aria-pressed="false" data-value="2">2π</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 31 Taylor series -->
+    <section class="viz" id="taylor" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>31</b> Polynomials in disguise</p>
+        <h2>Taylor series</h2>
+        <p>A computer can only add, subtract, multiply and divide, so how does it find sin x? One way is a polynomial that copies sin x at a single point: the same height, the same slope, the same bend, and so on for as many terms as you like. Every extra term makes the copy hug the curve over a wider stretch.</p>
+        <p>For sin x and eˣ, enough terms copy the whole curve. For 1/(1 + x²) they can't: around 0 the copy falls apart past x = 1, even though the curve is perfectly smooth. The trouble hides off the number line, at the imaginary numbers ±i, where the function divides by zero. A series only reaches as far as the nearest trouble.</p>
+        <p>Drag the white dot to build the series around a different point, and watch the shaded zone move with it.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A function and its Taylor polynomial, with the zone where the series converges"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>White: the function. Violet: the polynomial. Drag the white dot.</span><span>Shaded: where adding terms keeps helping</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true" data-ctl="animate">Add terms one by one</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Degree <output data-ctl="degree-out"></output></span>
+          <input type="range" data-ctl="degree" min="0" max="40" step="1" value="1">
+        </label>
+        <div class="control">
+          <span class="control-label">Function</span>
+          <div class="seg mono" data-ctl="func">
+            <button type="button" aria-pressed="true" data-value="sin">sin x</button>
+            <button type="button" aria-pressed="false" data-value="exp">eˣ</button>
+            <button type="button" aria-pressed="false" data-value="bump">1/(1 + x²)</button>
+            <button type="button" aria-pressed="false" data-value="log">ln(1 + x)</button>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="recenter">Back to x = 0</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 32 Benford's law -->
+    <section class="viz" id="benford" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>32</b> Why 1 comes first</p>
+        <h2>Benford's law</h2>
+        <p>Take the populations of towns, the lengths of rivers or the numbers in a company's accounts, and look only at the first digit. You'd expect each digit from 1 to 9 to lead about one time in nine. Instead about 30% start with 1, and fewer than 5% start with 9.</p>
+        <p>The reason is growth. Something that grows by a steady percentage spends a long time between 1 and 2, because doubling takes a while, but it rushes from 9 to 10, an 11% step. On a logarithmic scale, the stretch from 1 to 2 covers 30.1% of the way to 10. Powers of 2, Fibonacci numbers and factorials all follow the law exactly in the long run.</p>
+        <p>Simon Newcomb noticed it in 1881 because the first pages of his book of logarithm tables were the most worn. Auditors now use it to spot invented figures. Pick random numbers from 1 to 999 to see data that doesn't follow it.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Bar chart of leading digits against Benford's law"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Bars: how often each first digit appears. White ticks: Benford's prediction.</span><span>Each new number's first digit is in amber</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Numbers</span>
+          <div class="seg" data-ctl="data">
+            <button type="button" aria-pressed="true" data-value="pow2">Powers of 2</button>
+            <button type="button" aria-pressed="false" data-value="fib">Fibonacci</button>
+            <button type="button" aria-pressed="false" data-value="fact">Factorials</button>
+            <button type="button" aria-pressed="false" data-value="product">Random products</button>
+            <button type="button" aria-pressed="false" data-value="uniform">Random 1 to 999</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0" max="12" step="1" value="3">
+        </label>
+      </div>
+    </section>
+
+    <!-- 33 Diffusion-limited aggregation -->
+    <section class="viz" id="dla" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>33</b> Random walks that stick</p>
+        <h2>Growing crystals</h2>
+        <p>Put one sticky particle in the middle. Release another far away and let it wander at random, one step in any direction, over and over, until it bumps into the first and sticks. Then release the next one.</p>
+        <p>You might expect a round blob. Instead you get branching arms, because the tips stick out and catch wandering particles before they can reach the gaps between branches. The same process shapes copper grown by electroplating, mineral dendrites in rock and the branching scars of electric discharges.</p>
+        <p>Thomas Witten and Leonard Sander described it in 1981. The cluster is a fractal, somewhere between a line and a filled area: its mass grows like its radius to the power of about 1.71, not 2. Lower the stickiness and particles get more chances to slip into the gaps, so the cluster fills in.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A cluster growing from particles that wander at random and stick"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Color: how big the cluster was when each particle arrived</span><span>The view zooms out as it grows</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Grow</span>
+          <div class="seg" data-ctl="mode">
+            <button type="button" aria-pressed="true" data-value="point">From a seed</button>
+            <button type="button" aria-pressed="false" data-value="line">From the ground</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0" max="6" step="1" value="3">
+        </label>
+        <label class="control">
+          <span class="control-label">Stickiness <output data-ctl="stick-out"></output></span>
+          <input type="range" data-ctl="stick" min="0.05" max="1" step="0.05" value="1">
+        </label>
+      </div>
+    </section>
+
+    <!-- 34 Brachistochrone -->
+    <section class="viz" id="cycloid" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>34</b> The quickest way down</p>
+        <h2>The brachistochrone</h2>
+        <p>A bead slides without friction from A down to B. Which shape of track gets it there first? The straight line is the shortest, but the bead starts out slowly. A steeper start builds speed sooner, but too steep wastes distance.</p>
+        <p>In 1696 Johann Bernoulli challenged the mathematicians of Europe to find the answer. Newton, Leibniz, his brother Jakob and others solved it: the fastest track is a cycloid, the curve traced by a point on the rim of a rolling wheel. Galileo had guessed an arc of a circle, which comes close but loses.</p>
+        <p>Once B is far enough to the right, something strange happens: the fastest path dips below B and climbs back up to it. Try "Far and shallow".</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Beads racing down four tracks from A to B under gravity"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Pink: cycloid. Violet: Galileo's circle. Amber: steep start. Blue: straight line.</span><span>Drag the white ring to move B</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="race">Race again</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Put B</span>
+          <div class="seg" data-ctl="preset">
+            <button type="button" aria-pressed="true" data-value="2.6,1.25">Across and down</button>
+            <button type="button" aria-pressed="false" data-value="1,1.3">Nearly below</button>
+            <button type="button" aria-pressed="false" data-value="2.6,0.3">Far and shallow</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="slow-out"></output></span>
+          <input type="range" data-ctl="slow" min="0.1" max="1" step="0.05" value="0.5">
+        </label>
+      </div>
+    </section>
+
+    <!-- 35 Apollonian gasket -->
+    <section class="viz" id="apollonian" style="--accent: var(--green)">
+      <div class="viz-text">
+        <p class="kicker"><b>35</b> Circles all the way down</p>
+        <h2>The Apollonian gasket</h2>
+        <p>Draw three circles that touch each other inside a big one. Each curved triangle between them has room for exactly one circle that touches all three of its sides. Fill every gap, then every new gap, forever.</p>
+        <p>Measure a circle's curvature as 1 ÷ radius, so smaller circles curve more. René Descartes found a simple rule linking four touching circles, and it leads somewhere surprising: if the first four curvatures are whole numbers, every circle in the gasket has a whole-number curvature too. The outer circle counts as negative because it curves the other way.</p>
+        <p>Apollonius of Perga studied circles touching circles around 200 BC. The gasket still turns up in research on prime numbers: mathematicians have proved that a gasket like this one contains infinitely many circles whose curvature is prime.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="An Apollonian gasket of touching circles labeled with their curvatures"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Numbers: each circle's curvature</span><span>Hover or tap a circle to read it</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Start with curvatures</span>
+          <div class="seg mono" data-ctl="start">
+            <button type="button" aria-pressed="true" data-value="-1,2,2,3">−1, 2, 2, 3</button>
+            <button type="button" aria-pressed="false" data-value="-2,3,6,7">−2, 3, 6, 7</button>
+            <button type="button" aria-pressed="false" data-value="-3,4,12,13">−3, 4, 12, 13</button>
+            <button type="button" aria-pressed="false" data-value="-6,10,15,19">−6, 10, 15, 19</button>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="regrow">Grow it again</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -658,5 +1405,25 @@
   <script src="js/monty.js"></script>
   <script src="js/buffon.js"></script>
   <script src="js/birthday.js"></script>
+  <script src="js/life.js"></script>
+  <script src="js/logistic.js"></script>
+  <script src="js/collatz.js"></script>
+  <script src="js/recaman.js"></script>
+  <script src="js/koch.js"></script>
+  <script src="js/hilbert.js"></script>
+  <script src="js/pythagoras.js"></script>
+  <script src="js/sandpile.js"></script>
+  <script src="js/penrose.js"></script>
+  <script src="js/voronoi.js"></script>
+  <script src="js/newton.js"></script>
+  <script src="js/spirograph.js"></script>
+  <script src="js/harmonograph.js"></script>
+  <script src="js/pendulums.js"></script>
+  <script src="js/euler.js"></script>
+  <script src="js/taylor.js"></script>
+  <script src="js/benford.js"></script>
+  <script src="js/dla.js"></script>
+  <script src="js/cycloid.js"></script>
+  <script src="js/apollonian.js"></script>
 </body>
 </html>
