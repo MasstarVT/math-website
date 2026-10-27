@@ -10,6 +10,11 @@ Interactive visualizations of mathematics you can watch move:
 4. **The Mandelbrot set**: zoomable, rendered on the GPU with WebGL.
 5. **The golden angle**: how sunflowers pack their seeds.
 6. **Times tables on a circle**: cardioids, nephroids and friends.
+7. **Fourier circles**: spinning circles that draw any shape, including one you draw.
+8. **The butterfly effect**: the Lorenz attractor, with paths that start almost together and drift apart.
+9. **Prime spirals**: primes plotted at (n, n) in polar coordinates, making spirals and rays.
+10. **The chaos game**: random jumps that build the Sierpinski triangle, other fractals and a fern.
+11. **The bell curve**: a Galton board filling bins that approach the normal distribution.
 
 Plain HTML, CSS and JavaScript. No build step and no dependencies.
 

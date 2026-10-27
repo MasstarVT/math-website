@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unfolded: math you can watch</title>
-  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, the golden angle and times tables on a circle.">
+  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, Fourier circles, the butterfly effect, prime spirals, fractals and the bell curve.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' fill='none' stroke='%23ffb454' stroke-width='2'/%3E%3Crect x='10' y='10' width='12' height='12' fill='none' stroke='%236ee7ff' stroke-width='2'/%3E%3Cpath d='M3 3l7 7M29 3l-7 7M3 29l7-7M29 29l-7-7' stroke='%23ece8df' stroke-width='1.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,13 +22,18 @@
       <a href="#mandelbrot">04 Mandelbrot</a>
       <a href="#golden">05 Golden angle</a>
       <a href="#times">06 Times tables</a>
+      <a href="#fourier">07 Fourier</a>
+      <a href="#lorenz">08 Butterfly</a>
+      <a href="#primes">09 Primes</a>
+      <a href="#chaos">10 Chaos game</a>
+      <a href="#galton">11 Bell curve</a>
     </div>
   </nav>
 
   <header class="hero" id="top">
     <p class="eyebrow">Interactive mathematics</p>
     <h1>Unfolded</h1>
-    <p class="lede">Six ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
+    <p class="lede">Eleven ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
     <ol class="toc">
       <li><a href="#tesseract"><span>01</span>A cube from the fourth dimension</a></li>
       <li><a href="#dragon"><span>02</span>A dragon made of right angles</a></li>
@@ -36,6 +41,11 @@
       <li><a href="#mandelbrot"><span>04</span>An edge that never ends</a></li>
       <li><a href="#golden"><span>05</span>How a sunflower packs its seeds</a></li>
       <li><a href="#times"><span>06</span>Times tables that draw a heart</a></li>
+      <li><a href="#fourier"><span>07</span>Circles that can draw anything</a></li>
+      <li><a href="#lorenz"><span>08</span>A butterfly that ruins forecasts</a></li>
+      <li><a href="#primes"><span>09</span>Spirals hiding in the primes</a></li>
+      <li><a href="#chaos"><span>10</span>Order from random dice rolls</a></li>
+      <li><a href="#galton"><span>11</span>Where randomness piles up</a></li>
     </ol>
   </header>
 
@@ -283,6 +293,193 @@
       </div>
     </section>
 
+    <!-- 07 Fourier -->
+    <section class="viz" id="fourier" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>07</b> Circles riding on circles</p>
+        <h2>Fourier circles</h2>
+        <p>Any closed shape can be drawn by a chain of spinning circles. Each circle turns at a whole-number speed and rides on the rim of the one before it. Choose the right sizes and starting angles and the pen at the end of the chain traces your shape.</p>
+        <p>Working out those sizes is called the Fourier transform. It's one of the most useful ideas in science: it's how JPEG shrinks photos and how your phone pulls a voice out of background noise. A few circles give a rough sketch. Add more and the corners sharpen.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Spinning circles chained together, drawing a shape"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Grey outline: the target. Colored trail: what these circles draw.</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Shape</span>
+          <div class="seg" data-ctl="shape">
+            <button type="button" aria-pressed="true" data-value="heart">Heart</button>
+            <button type="button" aria-pressed="false" data-value="star">Star</button>
+            <button type="button" aria-pressed="false" data-value="square">Square</button>
+            <button type="button" aria-pressed="false" data-value="infinity">Infinity</button>
+            <button type="button" aria-pressed="false" data-value="draw">Draw your own</button>
+          </div>
+          <p class="hint" data-ctl="hint" hidden>Draw one closed loop on the canvas with your mouse or finger.</p>
+        </div>
+        <label class="control">
+          <span class="control-label">Circles <output data-ctl="circles-out"></output></span>
+          <input type="range" data-ctl="circles" min="1" max="256" step="1" value="20">
+        </label>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0.1" max="3" step="0.05" value="1">
+        </label>
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 Lorenz -->
+    <section class="viz" id="lorenz" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>08</b> Sensitive dependence</p>
+        <h2>The butterfly effect</h2>
+        <p>In 1963 Edward Lorenz boiled the weather down to three equations and let a computer follow them. The point never settles and never repeats itself. It loops around two wings forever.</p>
+        <p>Start two paths a hundred-thousandth apart. For a while they move as one. Then the gap explodes and they go completely separate ways. That's why forecasts more than a couple of weeks out are guesswork: tiny errors in today's measurements grow until they swamp everything.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas class="is-draggable" aria-label="The Lorenz attractor, with paths that start almost together and drift apart"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Drag to orbit</span><span>Set ρ below about 24 and the paths settle down</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Paths</span>
+          <div class="seg" data-ctl="mode">
+            <button type="button" aria-pressed="false" data-value="one">One</button>
+            <button type="button" aria-pressed="true" data-value="two">Two, almost touching</button>
+            <button type="button" aria-pressed="false" data-value="many">A cloud of 150</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">ρ (rho) <output data-ctl="rho-out"></output></span>
+          <input type="range" data-ctl="rho" min="5" max="50" step="0.1" value="28">
+        </label>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0.2" max="4" step="0.05" value="1">
+        </label>
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 Prime spirals -->
+    <section class="viz" id="primes" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>09</b> Patterns in the primes</p>
+        <h2>Prime spirals</h2>
+        <p>Place every whole number n at distance n from the center, turned n radians. Keep only the primes. Spirals appear. Zoom out and there are dozens of them. Zoom out further and they straighten into rays.</p>
+        <p>The arms come from fractions that are very close to 2π: 44/7 and 710/113. Numbers 44 apart, or 710 apart, point in almost the same direction, so they line up. Primes skip every arm whose numbers share a factor with 44 or 710, which is why some arms are empty. Even the first 6 arms show it: every prime above 3 sits next to a multiple of 6, so primes only use 2 of them.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Prime numbers plotted in polar coordinates, forming spirals and rays"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Each dot is a number at angle n radians, distance n. Amber dots are primes.</span></figcaption>
+      </figure>
+      <div class="controls">
+        <label class="control">
+          <span class="control-label">Zoom out</span>
+          <input type="range" data-ctl="zoom" min="1.5" max="6" step="0.001" value="1.8">
+        </label>
+        <div class="control">
+          <span class="control-label">Go to</span>
+          <div class="seg" data-ctl="preset">
+            <button type="button" aria-pressed="true" data-value="120">6 arms</button>
+            <button type="button" aria-pressed="false" data-value="5000">44 arms</button>
+            <button type="button" aria-pressed="false" data-value="1000000">Rays</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="control-label">Show</span>
+          <div class="seg" data-ctl="show">
+            <button type="button" aria-pressed="false" data-value="primes">Primes</button>
+            <button type="button" aria-pressed="true" data-value="both">Primes and the rest</button>
+            <button type="button" aria-pressed="false" data-value="all">All numbers</button>
+          </div>
+        </div>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false" data-ctl="auto">Zoom out slowly</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Chaos game -->
+    <section class="viz" id="chaos" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>10</b> Random rolls, perfect order</p>
+        <h2>The chaos game</h2>
+        <p>Mark the three corners of a triangle and put a dot anywhere. Roll a die to pick a corner, move halfway toward it, and mark the spot. Then do it again from there. Every move is random, yet after a few thousand rolls the dots form the Sierpinski triangle: a triangle full of triangle-shaped holes, all the way down.</p>
+        <p>Change the shape or the rule and other fractals appear. Swap the corners for four stretch-and-shift rules and the same random process grows a fern.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="The chaos game drawing a fractal one random jump at a time"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Each dot takes the color of the corner it jumped toward</span><span>Use One step to watch single jumps</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Game</span>
+          <div class="seg" data-ctl="game">
+            <button type="button" aria-pressed="true" data-value="triangle">Triangle, halfway</button>
+            <button type="button" aria-pressed="false" data-value="square">Square, no corner twice</button>
+            <button type="button" aria-pressed="false" data-value="pentagon">Pentagon, 61.8%</button>
+            <button type="button" aria-pressed="false" data-value="hexagon">Hexagon, two thirds</button>
+            <button type="button" aria-pressed="false" data-value="fern">Fern</button>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">One step</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0" max="4.3" step="0.01" value="1.7">
+        </label>
+      </div>
+    </section>
+
+    <!-- 11 Galton board -->
+    <section class="viz" id="galton" style="--accent: var(--green)">
+      <div class="viz-text">
+        <p class="kicker"><b>11</b> Where randomness piles up</p>
+        <h2>The bell curve</h2>
+        <p>Drop a ball onto rows of pegs. At every peg it has an even chance of bouncing left or right, so where any one ball lands is pure luck. Drop thousands and the pile always takes the same shape: the bell curve, also called the normal distribution.</p>
+        <p>It appears because most paths mix lefts and rights about evenly, and only a few go all one way. Heights, test scores and measurement errors pile up the same way for the same reason: each is the sum of many small random nudges.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A Galton board: balls bouncing through pegs into bins that form a bell curve"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>White line: the bell curve the bars should approach</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">Drop 1</button>
+          <button type="button" class="btn ghost" data-ctl="hundred">Drop 100</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Empty</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Chance of bouncing right <output data-ctl="bias-out"></output></span>
+          <input type="range" data-ctl="bias" min="0.1" max="0.9" step="0.05" value="0.5">
+        </label>
+        <label class="control">
+          <span class="control-label">Rows of pegs <output data-ctl="rows-out"></output></span>
+          <input type="range" data-ctl="rows" min="4" max="18" step="1" value="12">
+        </label>
+        <label class="control">
+          <span class="control-label">Drop rate <output data-ctl="rate-out"></output></span>
+          <input type="range" data-ctl="rate" min="1" max="60" step="1" value="10">
+        </label>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -296,5 +493,10 @@
   <script src="js/mandelbrot.js"></script>
   <script src="js/golden.js"></script>
   <script src="js/times.js"></script>
+  <script src="js/fourier.js"></script>
+  <script src="js/lorenz.js"></script>
+  <script src="js/primes.js"></script>
+  <script src="js/chaos.js"></script>
+  <script src="js/galton.js"></script>
 </body>
 </html>

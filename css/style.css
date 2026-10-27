@@ -241,6 +241,14 @@ a { color: inherit; }
 
 .viz-stage canvas.is-grabbing { cursor: grabbing; }
 
+.viz-stage canvas.is-drawing { cursor: crosshair; }
+
+.hint {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--accent);
+}
+
 /* Let vertical swipes over the tesseract still scroll the page on phones. */
 #tesseract canvas { touch-action: pan-y; }
 

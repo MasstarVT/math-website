@@ -137,7 +137,9 @@
   }
 
   // Highlight the nav link of the section currently in view.
+  // The nav scrolls sideways when it doesn't fit, so keep the active link in view.
   function trackNav() {
+    var nav = document.querySelector('.topnav');
     var links = {};
     document.querySelectorAll('.topnav a').forEach(function (a) {
       links[a.getAttribute('href').slice(1)] = a;
@@ -145,7 +147,14 @@
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var link = links[entry.target.id];
-        if (link) link.classList.toggle('is-active', entry.isIntersecting);
+        if (!link) return;
+        link.classList.toggle('is-active', entry.isIntersecting);
+        if (entry.isIntersecting && nav.scrollWidth > nav.clientWidth) {
+          nav.scrollTo({
+            left: link.offsetLeft - nav.offsetLeft - (nav.clientWidth - link.offsetWidth) / 2,
+            behavior: reducedMotion ? 'auto' : 'smooth'
+          });
+        }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     document.querySelectorAll('.viz').forEach(function (s) { observer.observe(s); });
