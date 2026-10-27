@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unfolded: math you can watch</title>
-  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, Fourier circles, the butterfly effect, prime spirals, fractals, the bell curve, coin flips, the Monty Hall problem, Buffon's needle, the birthday paradox, the Game of Life, chaos in the logistic map, the Collatz conjecture, Recamán's sequence, the Koch snowflake, the Hilbert curve, the Pythagoras tree, sandpiles, Penrose tiling, Voronoi diagrams, Newton's fractal, the spirograph, the harmonograph, the pendulum wave, Euler's formula, Taylor series, Benford's law, growing crystals, the brachistochrone and the Apollonian gasket.">
+  <meta name="description" content="Interactive visualizations of beautiful mathematics, sorted into tabs: geometry and the fourth dimension, fractals, chaos, chance, numbers, and curves and motion. Spin them, drag them, and change the numbers.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' fill='none' stroke='%23ffb454' stroke-width='2'/%3E%3Crect x='10' y='10' width='12' height='12' fill='none' stroke='%236ee7ff' stroke-width='2'/%3E%3Cpath d='M3 3l7 7M29 3l-7 7M3 29l7-7M29 29l-7-7' stroke='%23ece8df' stroke-width='1.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,96 +13,49 @@
 </head>
 <body>
 
-  <nav class="topbar" aria-label="Sections">
-    <a class="brand" href="#top">Unfolded</a>
-    <div class="topnav">
-      <a href="#tesseract">01 Tesseract</a>
-      <a href="#dragon">02 Dragon</a>
-      <a href="#langton">03 Ant</a>
-      <a href="#mandelbrot">04 Mandelbrot</a>
-      <a href="#golden">05 Golden angle</a>
-      <a href="#times">06 Times tables</a>
-      <a href="#fourier">07 Fourier</a>
-      <a href="#lorenz">08 Butterfly</a>
-      <a href="#primes">09 Primes</a>
-      <a href="#chaos">10 Chaos game</a>
-      <a href="#galton">11 Bell curve</a>
-      <a href="#coins">12 Coin flips</a>
-      <a href="#monty">13 Monty Hall</a>
-      <a href="#buffon">14 Needles</a>
-      <a href="#birthday">15 Birthdays</a>
-      <a href="#life">16 Life</a>
-      <a href="#logistic">17 Chaos road</a>
-      <a href="#collatz">18 Collatz</a>
-      <a href="#recaman">19 Recamán</a>
-      <a href="#koch">20 Snowflake</a>
-      <a href="#hilbert">21 Hilbert</a>
-      <a href="#pythagoras">22 Pythagoras</a>
-      <a href="#sandpile">23 Sandpile</a>
-      <a href="#penrose">24 Penrose</a>
-      <a href="#voronoi">25 Voronoi</a>
-      <a href="#newton">26 Newton</a>
-      <a href="#spirograph">27 Spirograph</a>
-      <a href="#harmonograph">28 Harmonograph</a>
-      <a href="#pendulums">29 Pendulums</a>
-      <a href="#euler">30 Euler</a>
-      <a href="#taylor">31 Taylor</a>
-      <a href="#benford">32 Benford</a>
-      <a href="#dla">33 Crystals</a>
-      <a href="#cycloid">34 Quickest path</a>
-      <a href="#apollonian">35 Circles</a>
+  <nav class="topbar" aria-label="Visualizations">
+    <div class="topbar-row">
+      <a class="brand" href="#top">Unfolded</a>
+      <div class="tabs" data-ctl="tabs" role="group" aria-label="Topics"></div>
+      <button type="button" class="find" data-ctl="find" aria-label="Search the visualizations" aria-keyshortcuts="/">
+        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M13 13l4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+        <span>Find</span>
+      </button>
     </div>
+    <div class="topnav" aria-label="In this tab"></div>
   </nav>
 
   <header class="hero" id="top">
     <p class="eyebrow">Interactive mathematics</p>
     <h1>Unfolded</h1>
-    <p class="lede">Thirty-five ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
-    <ol class="toc">
-      <li><a href="#tesseract"><span>01</span>A cube from the fourth dimension</a></li>
-      <li><a href="#dragon"><span>02</span>A dragon made of right angles</a></li>
-      <li><a href="#langton"><span>03</span>An ant that builds a highway</a></li>
-      <li><a href="#mandelbrot"><span>04</span>An edge that never ends</a></li>
-      <li><a href="#golden"><span>05</span>How a sunflower packs its seeds</a></li>
-      <li><a href="#times"><span>06</span>Times tables that draw a heart</a></li>
-      <li><a href="#fourier"><span>07</span>Circles that can draw anything</a></li>
-      <li><a href="#lorenz"><span>08</span>A butterfly that ruins forecasts</a></li>
-      <li><a href="#primes"><span>09</span>Spirals hiding in the primes</a></li>
-      <li><a href="#chaos"><span>10</span>Order from random dice rolls</a></li>
-      <li><a href="#galton"><span>11</span>Where randomness piles up</a></li>
-      <li><a href="#coins"><span>12</span>Why a coin settles on 50%</a></li>
-      <li><a href="#monty"><span>13</span>The door you should switch to</a></li>
-      <li><a href="#buffon"><span>14</span>Finding π by dropping needles</a></li>
-      <li><a href="#birthday"><span>15</span>Why 23 people probably share a birthday</a></li>
-      <li><a href="#life"><span>16</span>Cells that live, die and walk</a></li>
-      <li><a href="#logistic"><span>17</span>One formula's road to chaos</a></li>
-      <li><a href="#collatz"><span>18</span>A puzzle nobody can prove</a></li>
-      <li><a href="#recaman"><span>19</span>A sequence that loops back</a></li>
-      <li><a href="#koch"><span>20</span>An infinite fence around a snowflake</a></li>
-      <li><a href="#hilbert"><span>21</span>A line that fills a square</a></li>
-      <li><a href="#pythagoras"><span>22</span>A tree grown from a² + b² = c²</a></li>
-      <li><a href="#sandpile"><span>23</span>Patterns from toppling sand</a></li>
-      <li><a href="#penrose"><span>24</span>Tiles that never repeat</a></li>
-      <li><a href="#voronoi"><span>25</span>Who's nearest?</a></li>
-      <li><a href="#newton"><span>26</span>Which answer does a guess find?</a></li>
-      <li><a href="#spirograph"><span>27</span>Gears, teeth and common factors</a></li>
-      <li><a href="#harmonograph"><span>28</span>Drawings made by pendulums</a></li>
-      <li><a href="#pendulums"><span>29</span>Fifteen pendulums, one minute</a></li>
-      <li><a href="#euler"><span>30</span>How e^(iπ) lands on −1</a></li>
-      <li><a href="#taylor"><span>31</span>Polynomials that copy curves</a></li>
-      <li><a href="#benford"><span>32</span>Why so many numbers start with 1</a></li>
-      <li><a href="#dla"><span>33</span>Crystals grown from random walks</a></li>
-      <li><a href="#cycloid"><span>34</span>The quickest way down</a></li>
-      <li><a href="#apollonian"><span>35</span>Circles all the way down</a></li>
-    </ol>
+    <p class="lede">Ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
+    <div class="finder" data-ctl="finder">
+      <div class="finder-bar">
+        <label class="search">
+          <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M13 13l4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+          <input type="search" data-ctl="search" placeholder="Search: primes, π, pendulums…" autocomplete="off" spellcheck="false" aria-label="Search the visualizations">
+          <kbd aria-hidden="true">/</kbd>
+        </label>
+        <p class="finder-count" data-ctl="count" aria-live="polite"></p>
+        <button type="button" class="btn ghost" data-ctl="clear" hidden>Clear filters</button>
+      </div>
+      <div class="chips tags" data-ctl="tags" role="group" aria-label="Filter by tag"></div>
+      <div class="index" data-ctl="index"></div>
+      <div class="index-empty" data-ctl="empty" hidden>
+        <p></p>
+        <button type="button" class="btn ghost" data-ctl="reset">Show everything</button>
+      </div>
+    </div>
   </header>
 
   <main>
 
-    <!-- 01 Tesseract -->
-    <section class="viz" id="tesseract" style="--accent: var(--cyan)">
+    <!-- Tesseract -->
+    <section class="viz" id="tesseract" style="--accent: var(--cyan)"
+      data-group="geometry" data-tags="dimensions"
+      data-short="Tesseract" data-blurb="A cube from the fourth dimension">
       <div class="viz-text">
-        <p class="kicker"><b>01</b> Four dimensions</p>
+        <p class="kicker">Four dimensions</p>
         <h2>The tesseract</h2>
         <p>A square is a line dragged sideways. A cube is a square dragged upward. Drag a cube in a fourth direction, at right angles to all three you know, and you get a tesseract: 16 corners, 32 edges and 8 cubes for faces.</p>
         <p>We can't see four dimensions, but we can see a shadow of one. A cube's shadow can be a small square inside a big one. A tesseract's shadow is a small cube inside a big one. Rotate it through the fourth dimension and the inner cube swells until it becomes the outer one. It looks like it's turning inside out, but every cell stays a perfect cube. Only the shadow bends.</p>
@@ -140,10 +93,12 @@
       </div>
     </section>
 
-    <!-- 02 Dragon curve -->
-    <section class="viz" id="dragon" style="--accent: var(--pink)">
+    <!-- Dragon curve -->
+    <section class="viz" id="dragon" style="--accent: var(--pink)"
+      data-group="fractals" data-tags="recursion, simple rules"
+      data-short="Dragon" data-blurb="A dragon made of right angles">
       <div class="viz-text">
-        <p class="kicker"><b>02</b> Rotate 90°, repeat</p>
+        <p class="kicker">Rotate 90°, repeat</p>
         <h2>The dragon curve</h2>
         <p>Fold a strip of paper in half, then in half again, and again. Unfold it so every crease makes a right angle and look at it edge-on. You've made a dragon.</p>
         <p>You don't need the paper. Start with one line. Copy the whole shape, swing the copy 90° around its last point, and attach it. Then do the same to the new shape. After a dozen rounds a coiled, clawed figure appears, and the line never once crosses itself.</p>
@@ -182,10 +137,12 @@
       </div>
     </section>
 
-    <!-- 03 Langton's ant -->
-    <section class="viz" id="langton" style="--accent: var(--amber)">
+    <!-- Langton's ant -->
+    <section class="viz" id="langton" style="--accent: var(--amber)"
+      data-group="dynamics" data-tags="simple rules"
+      data-short="Ant" data-blurb="An ant that builds a highway">
       <div class="viz-text">
-        <p class="kicker"><b>03</b> Two rules, ten thousand steps</p>
+        <p class="kicker">Two rules, ten thousand steps</p>
         <h2>Langton's ant</h2>
         <p>An ant walks on a grid of blank squares. On a blank square it turns 90° right, paints the square, and steps forward. On a painted square it turns 90° left, wipes it clean, and steps forward. That's the whole program.</p>
         <p>For about 10,000 steps the result looks like noise. Then the ant starts building a "highway": a 104-step pattern that repeats and marches off diagonally forever. Every starting grid anyone has tried ends up the same way, but nobody has proved it has to.</p>
@@ -219,10 +176,12 @@
       </div>
     </section>
 
-    <!-- 04 Mandelbrot -->
-    <section class="viz" id="mandelbrot" style="--accent: var(--violet)">
+    <!-- Mandelbrot -->
+    <section class="viz" id="mandelbrot" style="--accent: var(--violet)"
+      data-group="fractals" data-tags="complex numbers, infinity"
+      data-short="Mandelbrot" data-blurb="An edge that never ends">
       <div class="viz-text">
-        <p class="kicker"><b>04</b> z → z² + c</p>
+        <p class="kicker">z → z² + c</p>
         <h2>The Mandelbrot set</h2>
         <p>Pick a point c on the plane. Start at zero, square it, add c, and repeat. Either the numbers stay small forever or they run off to infinity. The points that stay small are the Mandelbrot set, painted black here. The colors show how quickly every other point escapes.</p>
         <p>The edge never gets simpler. Zoom in anywhere along it and you find spirals, seahorses, lightning and tiny copies of the whole set, each one slightly different.</p>
@@ -254,10 +213,12 @@
       </div>
     </section>
 
-    <!-- 05 Golden angle -->
-    <section class="viz" id="golden" style="--accent: var(--green)">
+    <!-- Golden angle -->
+    <section class="viz" id="golden" style="--accent: var(--green)"
+      data-group="geometry" data-tags="golden ratio, spirals, nature"
+      data-short="Golden angle" data-blurb="How a sunflower packs its seeds">
       <div class="viz-text">
-        <p class="kicker"><b>05</b> 137.507764…°</p>
+        <p class="kicker">137.507764…°</p>
         <h2>The golden angle</h2>
         <p>Plant a seed, turn by a fixed angle, plant the next one a little farther out, and repeat. Most angles waste space: the seeds fall into straight spokes with gaps between them. One angle, about 137.5°, never lines up at all, so the seeds pack evenly. Sunflowers, daisies and pinecones grow this way.</p>
         <p>Nudge the angle by a tenth of a degree and the spokes come back. Count the spiral arms in the golden pattern and you get Fibonacci numbers: 13, 21, 34, 55.</p>
@@ -299,10 +260,12 @@
       </div>
     </section>
 
-    <!-- 06 Times tables -->
-    <section class="viz" id="times" style="--accent: var(--pink)">
+    <!-- Times tables -->
+    <section class="viz" id="times" style="--accent: var(--pink)"
+      data-group="numbers" data-tags="circles"
+      data-short="Times tables" data-blurb="Times tables that draw a heart">
       <div class="viz-text">
-        <p class="kicker"><b>06</b> k → m·k (mod n)</p>
+        <p class="kicker">k → m·k (mod n)</p>
         <h2>Times tables on a circle</h2>
         <p>Put n points around a circle and number them. Draw a line from each point k to the point m × k, wrapping around the circle when you pass n. Times two draws a heart-shaped cardioid. Times three draws a nephroid with two lobes, times four has three.</p>
         <p>Let m slide between whole numbers and the curves melt into one another. Some big multipliers bring back the small ones in disguise.</p>
@@ -341,10 +304,12 @@
       </div>
     </section>
 
-    <!-- 07 Fourier -->
-    <section class="viz" id="fourier" style="--accent: var(--cyan)">
+    <!-- Fourier -->
+    <section class="viz" id="fourier" style="--accent: var(--cyan)"
+      data-group="motion" data-tags="circles, limits, draw your own"
+      data-short="Fourier" data-blurb="Circles that can draw anything">
       <div class="viz-text">
-        <p class="kicker"><b>07</b> Circles riding on circles</p>
+        <p class="kicker">Circles riding on circles</p>
         <h2>Fourier circles</h2>
         <p>Any closed shape can be drawn by a chain of spinning circles. Each circle turns at a whole-number speed and rides on the rim of the one before it. Choose the right sizes and starting angles and the pen at the end of the chain traces your shape.</p>
         <p>Working out those sizes is called the Fourier transform. It's one of the most useful ideas in science: it's how JPEG shrinks photos and how your phone pulls a voice out of background noise. A few circles give a rough sketch. Add more and the corners sharpen.</p>
@@ -380,10 +345,12 @@
       </div>
     </section>
 
-    <!-- 08 Lorenz -->
-    <section class="viz" id="lorenz" style="--accent: var(--pink)">
+    <!-- Lorenz -->
+    <section class="viz" id="lorenz" style="--accent: var(--pink)"
+      data-group="dynamics" data-tags="physics, dimensions"
+      data-short="Butterfly" data-blurb="A butterfly that ruins forecasts">
       <div class="viz-text">
-        <p class="kicker"><b>08</b> Sensitive dependence</p>
+        <p class="kicker">Sensitive dependence</p>
         <h2>The butterfly effect</h2>
         <p>In 1963 Edward Lorenz boiled the weather down to three equations and let a computer follow them. The point never settles and never repeats itself. It loops around two wings forever.</p>
         <p>Start two paths a hundred-thousandth apart. For a while they move as one. Then the gap explodes and they go completely separate ways. That's why forecasts more than a couple of weeks out are guesswork: tiny errors in today's measurements grow until they swamp everything.</p>
@@ -417,10 +384,12 @@
       </div>
     </section>
 
-    <!-- 09 Prime spirals -->
-    <section class="viz" id="primes" style="--accent: var(--amber)">
+    <!-- Prime spirals -->
+    <section class="viz" id="primes" style="--accent: var(--amber)"
+      data-group="numbers" data-tags="spirals"
+      data-short="Primes" data-blurb="Spirals hiding in the primes">
       <div class="viz-text">
-        <p class="kicker"><b>09</b> Patterns in the primes</p>
+        <p class="kicker">Patterns in the primes</p>
         <h2>Prime spirals</h2>
         <p>Place every whole number n at distance n from the center, turned n radians. Keep only the primes. Spirals appear. Zoom out and there are dozens of them. Zoom out further and they straighten into rays.</p>
         <p>The arms come from fractions that are very close to 2π: 44/7 and 710/113. Numbers 44 apart, or 710 apart, point in almost the same direction, so they line up. Primes skip every arm whose numbers share a factor with 44 or 710, which is why some arms are empty. Even the first 6 arms show it: every prime above 3 sits next to a multiple of 6, so primes only use 2 of them.</p>
@@ -457,10 +426,12 @@
       </div>
     </section>
 
-    <!-- 10 Chaos game -->
-    <section class="viz" id="chaos" style="--accent: var(--violet)">
+    <!-- Chaos game -->
+    <section class="viz" id="chaos" style="--accent: var(--violet)"
+      data-group="fractals" data-tags="randomness, recursion, nature"
+      data-short="Chaos game" data-blurb="Order from random dice rolls">
       <div class="viz-text">
-        <p class="kicker"><b>10</b> Random rolls, perfect order</p>
+        <p class="kicker">Random rolls, perfect order</p>
         <h2>The chaos game</h2>
         <p>Mark the three corners of a triangle and put a dot anywhere. Roll a die to pick a corner, move halfway toward it, and mark the spot. Then do it again from there. Every move is random, yet after a few thousand rolls the dots form the Sierpinski triangle: a triangle full of triangle-shaped holes, all the way down.</p>
         <p>Change the shape or the rule and other fractals appear. Swap the corners for four stretch-and-shift rules and the same random process grows a fern.</p>
@@ -493,10 +464,12 @@
       </div>
     </section>
 
-    <!-- 11 Galton board -->
-    <section class="viz" id="galton" style="--accent: var(--green)">
+    <!-- Galton board -->
+    <section class="viz" id="galton" style="--accent: var(--green)"
+      data-group="chance" data-tags="randomness, limits, physics"
+      data-short="Bell curve" data-blurb="Where randomness piles up">
       <div class="viz-text">
-        <p class="kicker"><b>11</b> Where randomness piles up</p>
+        <p class="kicker">Where randomness piles up</p>
         <h2>The bell curve</h2>
         <p>Drop a ball onto rows of pegs. At every peg it has an even chance of bouncing left or right, so where any one ball lands is pure luck. Drop thousands and the pile always takes the same shape: the bell curve, also called the normal distribution.</p>
         <p>It appears because most paths mix lefts and rights about evenly, and only a few go all one way. Heights, test scores and measurement errors pile up the same way for the same reason: each is the sum of many small random nudges.</p>
@@ -529,10 +502,12 @@
     </section>
 
 
-    <!-- 12 Coin flips -->
-    <section class="viz" id="coins" style="--accent: var(--amber)">
+    <!-- Coin flips -->
+    <section class="viz" id="coins" style="--accent: var(--amber)"
+      data-group="chance" data-tags="randomness, limits"
+      data-short="Coin flips" data-blurb="Why a coin settles on 50%">
       <div class="viz-text">
-        <p class="kicker"><b>12</b> Luck in the long run</p>
+        <p class="kicker">Luck in the long run</p>
         <h2>The law of large numbers</h2>
         <p>Flip a fair coin 10 times and getting 7 heads, 70%, is nothing special. Flip it 100 times and 60% still happens. But keep flipping and the share of heads gets squeezed toward 50%. After a million flips it's almost always within a tenth of a percent.</p>
         <p>Here's the strange part. The share closes in on 50%, but heads minus tails does not close in on zero. It tends to drift further away, growing like the square root of the number of flips. The coin never makes up for a run of tails. The run just gets drowned out by everything that comes after it.</p>
@@ -572,10 +547,12 @@
       </div>
     </section>
 
-    <!-- 13 Monty Hall -->
-    <section class="viz" id="monty" style="--accent: var(--cyan)">
+    <!-- Monty Hall -->
+    <section class="viz" id="monty" style="--accent: var(--cyan)"
+      data-group="chance" data-tags="randomness, surprises"
+      data-short="Monty Hall" data-blurb="The door you should switch to">
       <div class="viz-text">
-        <p class="kicker"><b>13</b> Should you switch?</p>
+        <p class="kicker">Should you switch?</p>
         <h2>The Monty Hall problem</h2>
         <p>A game show hides a car behind one of three doors and goats behind the other two. You pick a door. The host, who knows where the car is, opens one of the other doors to show a goat and lets you switch to the last closed door. Two doors are left, so it must be 50–50. Right?</p>
         <p>Switching wins 2 times out of 3. Your first pick is right only 1 time in 3, and showing you a goat doesn't change that. The other 2 times, the car is behind the one door the host was careful not to open. In every game, exactly one of the two choices wins.</p>
@@ -607,10 +584,12 @@
       </div>
     </section>
 
-    <!-- 14 Buffon's needle -->
-    <section class="viz" id="buffon" style="--accent: var(--pink)">
+    <!-- Buffon's needle -->
+    <section class="viz" id="buffon" style="--accent: var(--pink)"
+      data-group="chance" data-tags="randomness, π, limits"
+      data-short="Needles" data-blurb="Finding π by dropping needles">
       <div class="viz-text">
-        <p class="kicker"><b>14</b> π from a pile of needles</p>
+        <p class="kicker">π from a pile of needles</p>
         <h2>Buffon's needle</h2>
         <p>Draw lines on the floor, one needle-length apart, and drop needles at random. Some land across a line and some don't. In the 1700s the Comte de Buffon worked out that the chance of a crossing is exactly 2/π, about 64%. Count the crossings and you can work backwards to π, without a circle in sight. It sneaks in through the angle: a needle can point in any direction around a circle.</p>
         <p>It's a very slow way to find π. Ten times more needles buys only about half an extra correct digit. In 1901 Mario Lazzarini claimed 3.1415929 from 3,408 needles, which almost certainly means he stopped at a lucky moment.</p>
@@ -646,10 +625,12 @@
       </div>
     </section>
 
-    <!-- 15 Birthday paradox -->
-    <section class="viz" id="birthday" style="--accent: var(--violet)">
+    <!-- Birthday paradox -->
+    <section class="viz" id="birthday" style="--accent: var(--violet)"
+      data-group="chance" data-tags="randomness, surprises"
+      data-short="Birthdays" data-blurb="Why 23 people probably share a birthday">
       <div class="viz-text">
-        <p class="kicker"><b>15</b> Shared birthdays</p>
+        <p class="kicker">Shared birthdays</p>
         <h2>The birthday paradox</h2>
         <p>How many people do you need in a room before two of them probably share a birthday? Many people guess something near 183, half of 365. The real answer is 23.</p>
         <p>The trick is that you're not looking for someone who shares your birthday. Any pair will do, and 23 people make 253 pairs. Each pair has only a 1 in 365 chance of matching, but with that many pairs the chance of at least one match passes 50%. With 70 people a match is 99.9% certain.</p>
@@ -676,10 +657,12 @@
       </div>
     </section>
 
-    <!-- 16 Game of Life -->
-    <section class="viz" id="life" style="--accent: var(--green)">
+    <!-- Game of Life -->
+    <section class="viz" id="life" style="--accent: var(--green)"
+      data-group="dynamics" data-tags="simple rules, draw your own"
+      data-short="Life" data-blurb="Cells that live, die and walk">
       <div class="viz-text">
-        <p class="kicker"><b>16</b> A game with no players</p>
+        <p class="kicker">A game with no players</p>
         <h2>The Game of Life</h2>
         <p>Take a grid of cells, each one alive or dead. At every tick, a live cell with two or three live neighbors survives and a dead cell with exactly three comes alive. Every other cell dies or stays empty. John Conway chose these rules in 1970. You only pick where to start.</p>
         <p>Some shapes sit still, some blink, and some walk. The glider shuffles diagonally forever. Bill Gosper found a gun that fires a new glider every 30 ticks, which proved that a pattern can grow without limit. People have since built working computers out of gliders, so anything a computer can do, Life can do too.</p>
@@ -712,10 +695,12 @@
       </div>
     </section>
 
-    <!-- 17 Logistic map -->
-    <section class="viz" id="logistic" style="--accent: var(--violet)">
+    <!-- Logistic map -->
+    <section class="viz" id="logistic" style="--accent: var(--violet)"
+      data-group="dynamics" data-tags="simple rules, sequences"
+      data-short="Chaos road" data-blurb="One formula's road to chaos">
       <div class="viz-text">
-        <p class="kicker"><b>17</b> x → r·x·(1 − x)</p>
+        <p class="kicker">x → r·x·(1 − x)</p>
         <h2>The road to chaos</h2>
         <p>Here is a tiny model of a population. Next year's size is r times this year's, held back by crowding: x becomes r·x·(1 − x), where x runs from 0 (empty) to 1 (full). For small r the population settles on one value. Past r = 3 it can't settle, and it flips between a boom year and a bust year.</p>
         <p>Turn r up and the cycle of 2 splits into 4, then 8, then 16, each split arriving about 4.669 times sooner than the last. By r ≈ 3.57 the splits pile up and the values never repeat. That's chaos, from a formula you could work out on paper. Mitchell Feigenbaum found the same 4.669 in every process shaped like this single hump, and it has been measured in real fluids and circuits.</p>
@@ -755,10 +740,12 @@
       </div>
     </section>
 
-    <!-- 18 Collatz -->
-    <section class="viz" id="collatz" style="--accent: var(--pink)">
+    <!-- Collatz -->
+    <section class="viz" id="collatz" style="--accent: var(--pink)"
+      data-group="numbers" data-tags="sequences, simple rules"
+      data-short="Collatz" data-blurb="A puzzle nobody can prove">
       <div class="viz-text">
-        <p class="kicker"><b>18</b> Halve it, or triple it and add 1</p>
+        <p class="kicker">Halve it, or triple it and add 1</p>
         <h2>The Collatz conjecture</h2>
         <p>Pick any whole number. If it's even, halve it. If it's odd, triple it and add 1. Repeat. Start at 27 and you climb as high as 9,232 before crashing down to 1 after 111 steps. Every number anyone has tried ends at 1. Computers have checked every starting number past 100 quintillion, but nobody can prove that all of them do.</p>
         <p>Here every path is drawn backwards from 1. Each even step bends one way and each odd step bends the other. Paths that end the same way share a stem, so thousands of them grow into one plant. The white line is the number you're following.</p>
@@ -797,10 +784,12 @@
       </div>
     </section>
 
-    <!-- 19 Recamán -->
-    <section class="viz" id="recaman" style="--accent: var(--amber)">
+    <!-- Recamán -->
+    <section class="viz" id="recaman" style="--accent: var(--amber)"
+      data-group="numbers" data-tags="sequences, sound"
+      data-short="Recamán" data-blurb="A sequence that loops back">
       <div class="viz-text">
-        <p class="kicker"><b>19</b> Back if you can, forward if you must</p>
+        <p class="kicker">Back if you can, forward if you must</p>
         <h2>Recamán's sequence</h2>
         <p>Start at 0. On step 1 jump 1, on step 2 jump 2, and so on. Each time, jump backward if you'd land on a positive number you haven't visited yet. Otherwise jump forward. That gives 0, 1, 3, 6, 2, 7, 13, 20, 12, …</p>
         <p>Draw every jump as a half circle and the sequence weaves itself into loops. The rule tries not to repeat itself, but forward jumps can land on old numbers: 42 is reached on step 20 and again on step 24. Nobody knows whether every whole number is reached eventually. Some small ones hold out for a very long time.</p>
@@ -830,10 +819,12 @@
       </div>
     </section>
 
-    <!-- 20 Koch snowflake -->
-    <section class="viz" id="koch" style="--accent: var(--cyan)">
+    <!-- Koch snowflake -->
+    <section class="viz" id="koch" style="--accent: var(--cyan)"
+      data-group="fractals" data-tags="infinity, recursion, surprises"
+      data-short="Snowflake" data-blurb="An infinite fence around a snowflake">
       <div class="viz-text">
-        <p class="kicker"><b>20</b> Infinite edge, finite area</p>
+        <p class="kicker">Infinite edge, finite area</p>
         <h2>The Koch snowflake</h2>
         <p>Start with a triangle. Split every edge into thirds and push a smaller triangle out of each middle third. Then do the same to every new edge, forever.</p>
         <p>Every round makes the edge 4/3 as long, so after enough rounds it's longer than any distance you can name. Yet the whole snowflake fits inside a circle, and its area closes in on exactly 8/5 of the triangle you started with. It's an infinitely long fence around a field of ordinary size.</p>
@@ -862,10 +853,12 @@
       </div>
     </section>
 
-    <!-- 21 Hilbert curve -->
-    <section class="viz" id="hilbert" style="--accent: var(--violet)">
+    <!-- Hilbert curve -->
+    <section class="viz" id="hilbert" style="--accent: var(--violet)"
+      data-group="fractals" data-tags="recursion, infinity, surprises"
+      data-short="Hilbert" data-blurb="A line that fills a square">
       <div class="viz-text">
-        <p class="kicker"><b>21</b> A line that fills a square</p>
+        <p class="kicker">A line that fills a square</p>
         <h2>The Hilbert curve</h2>
         <p>Can a line with no thickness fill a whole square? In 1891 David Hilbert showed how. Split the square into four and visit the quarters in a U shape. Then split every quarter into four and swap each visit for a smaller U, turned so the ends join up. Repeat.</p>
         <p>Each order roughly doubles the length of the line, yet it never leaves the square and never crosses itself. Carried on forever, it passes through every single point of the square.</p>
@@ -894,10 +887,12 @@
       </div>
     </section>
 
-    <!-- 22 Pythagoras tree -->
-    <section class="viz" id="pythagoras" style="--accent: var(--green)">
+    <!-- Pythagoras tree -->
+    <section class="viz" id="pythagoras" style="--accent: var(--green)"
+      data-group="fractals" data-tags="recursion, nature"
+      data-short="Pythagoras" data-blurb="A tree grown from a² + b² = c²">
       <div class="viz-text">
-        <p class="kicker"><b>22</b> a² + b² = c²</p>
+        <p class="kicker">a² + b² = c²</p>
         <h2>The Pythagoras tree</h2>
         <p>Put a right triangle on top of a square, then build a square on each of the triangle's two shorter sides. Do the same on top of those two squares, and again, and a tree grows.</p>
         <p>Pythagoras' theorem says the two smaller squares together have exactly the area of the square they grow from. So every generation of squares adds up to the area of the trunk, whatever the angle. Point at any square to check.</p>
@@ -923,10 +918,12 @@
       </div>
     </section>
 
-    <!-- 23 Sandpile -->
-    <section class="viz" id="sandpile" style="--accent: var(--amber)">
+    <!-- Sandpile -->
+    <section class="viz" id="sandpile" style="--accent: var(--amber)"
+      data-group="dynamics" data-tags="simple rules"
+      data-short="Sandpile" data-blurb="Patterns from toppling sand">
       <div class="viz-text">
-        <p class="kicker"><b>23</b> Four grains and it topples</p>
+        <p class="kicker">Four grains and it topples</p>
         <h2>The sandpile</h2>
         <p>Drop grains of sand onto a grid. A square can hold up to 3 grains. Give it a 4th and it topples, passing one grain to each of its four neighbors, which may topple in turn. Grains pushed off the edge are gone.</p>
         <p>Pour at the center and a pattern grows that nobody designed: nested triangles, stripes and four-fold symmetry, sharper the more sand you add. The order in which squares topple never matters. The final pile always comes out the same, which is why it's called the abelian sandpile.</p>
@@ -956,10 +953,12 @@
       </div>
     </section>
 
-    <!-- 24 Penrose tiling -->
-    <section class="viz" id="penrose" style="--accent: var(--pink)">
+    <!-- Penrose tiling -->
+    <section class="viz" id="penrose" style="--accent: var(--pink)"
+      data-group="geometry" data-tags="golden ratio, tiling"
+      data-short="Penrose" data-blurb="Tiles that never repeat">
       <div class="viz-text">
-        <p class="kicker"><b>24</b> Order without repeats</p>
+        <p class="kicker">Order without repeats</p>
         <h2>Penrose tiling</h2>
         <p>Square tiles repeat: slide the floor over by one tile and it lands on itself. Roger Penrose found tiles that cover a floor forever without gaps, yet can never repeat. However far you slide the pattern, it never matches up.</p>
         <p>Here there are just two tiles, a fat rhombus and a thin one. Each round cuts every tile into smaller fat and thin pieces by the same rule. Count them and the ratio of fat to thin closes in on the golden ratio, 1.618…, which isn't a fraction. A repeating floor would give a fraction, so this one can't repeat.</p>
@@ -988,10 +987,12 @@
       </div>
     </section>
 
-    <!-- 25 Voronoi -->
-    <section class="viz" id="voronoi" style="--accent: var(--cyan)">
+    <!-- Voronoi -->
+    <section class="viz" id="voronoi" style="--accent: var(--cyan)"
+      data-group="geometry" data-tags="tiling"
+      data-short="Voronoi" data-blurb="Who's nearest?">
       <div class="viz-text">
-        <p class="kicker"><b>25</b> Who's nearest?</p>
+        <p class="kicker">Who's nearest?</p>
         <h2>Voronoi diagrams</h2>
         <p>Scatter some points, then color every spot on the plane by whichever point is closest. The plane breaks into cells with straight edges, one cell per point. Every edge lies exactly halfway between two points, and every corner is equally far from three.</p>
         <p>The pattern turns up in giraffe skin, dried mud, dragonfly wings and the areas served by cell towers. In 1854 John Snow drew a boundary like this around a London water pump to show that cholera deaths clustered near it.</p>
@@ -1014,10 +1015,12 @@
       </div>
     </section>
 
-    <!-- 26 Newton's fractal -->
-    <section class="viz" id="newton" style="--accent: var(--violet)">
+    <!-- Newton's fractal -->
+    <section class="viz" id="newton" style="--accent: var(--violet)"
+      data-group="fractals" data-tags="complex numbers"
+      data-short="Newton" data-blurb="Which answer does a guess find?">
       <div class="viz-text">
-        <p class="kicker"><b>26</b> Slide down the tangent</p>
+        <p class="kicker">Slide down the tangent</p>
         <h2>Newton's fractal</h2>
         <p>Newton's method solves equations by guessing. Start with a guess, follow the curve's tangent line down to zero, and use that point as the next guess. Close to an answer it homes in fast, roughly doubling the number of correct digits with every step.</p>
         <p>But which answer does it find? Color every starting point in the plane of complex numbers by the root it ends up at. Each root sits in a calm patch of its own color. Between them the borders break into chains of beads, and wherever two colors meet, all the others are there too.</p>
@@ -1048,10 +1051,12 @@
       </div>
     </section>
 
-    <!-- 27 Spirograph -->
-    <section class="viz" id="spirograph" style="--accent: var(--pink)">
+    <!-- Spirograph -->
+    <section class="viz" id="spirograph" style="--accent: var(--pink)"
+      data-group="motion" data-tags="circles"
+      data-short="Spirograph" data-blurb="Gears, teeth and common factors">
       <div class="viz-text">
-        <p class="kicker"><b>27</b> Gears and a pen</p>
+        <p class="kicker">Gears and a pen</p>
         <h2>The spirograph</h2>
         <p>A toothed gear rolls around the inside of a toothed ring, with a pen through a hole in the gear. How many laps until the pattern closes? Count the teeth. With a 96-tooth ring and a 30-tooth gear, the largest number that divides both is 6, so the pen returns to its start after 30 ÷ 6 = 5 laps, having drawn 96 ÷ 6 = 16 points.</p>
         <p>A gear that shares no factor with 96, like one with 35 teeth, has to make 35 laps and draws 96 points. It's the greatest common divisor at work, the same arithmetic you use to simplify fractions.</p>
@@ -1090,10 +1095,12 @@
       </div>
     </section>
 
-    <!-- 28 Harmonograph -->
-    <section class="viz" id="harmonograph" style="--accent: var(--amber)">
+    <!-- Harmonograph -->
+    <section class="viz" id="harmonograph" style="--accent: var(--amber)"
+      data-group="motion" data-tags="physics"
+      data-short="Harmonograph" data-blurb="Drawings made by pendulums">
       <div class="viz-text">
-        <p class="kicker"><b>28</b> Pendulums with a pen</p>
+        <p class="kicker">Pendulums with a pen</p>
         <h2>The harmonograph</h2>
         <p>Victorian parlors had a drawing machine run by pendulums: one swings the pen left and right, another swings it up and down. When the two swing in a simple ratio like 2 to 3, the pen traces a Lissajous figure, a closed knot that repeats exactly.</p>
         <p>Real pendulums lose energy, so the knot slowly shrinks toward the center. Detune one pendulum slightly and the knot also turns as it shrinks, laying down a spiral of overlapping loops. A third pendulum that swings the paper in circles adds the familiar swirl.</p>
@@ -1132,10 +1139,12 @@
       </div>
     </section>
 
-    <!-- 29 Pendulum wave -->
-    <section class="viz" id="pendulums" style="--accent: var(--cyan)">
+    <!-- Pendulum wave -->
+    <section class="viz" id="pendulums" style="--accent: var(--cyan)"
+      data-group="motion" data-tags="physics"
+      data-short="Pendulums" data-blurb="Fifteen pendulums, one minute">
       <div class="viz-text">
-        <p class="kicker"><b>29</b> Fifteen pendulums, one minute</p>
+        <p class="kicker">Fifteen pendulums, one minute</p>
         <h2>The pendulum wave</h2>
         <p>Hang 15 pendulums in a row, each a little shorter than the last. Tune them so that in one minute the first swings exactly 51 times, the next 52, the next 53, and so on up to 65. Then let them all go at once.</p>
         <p>They drift apart into traveling waves, snakes and braids. Halfway through the minute each pendulum is half a swing ahead of the one before it, so they split into two alternating rows. At a third of the minute the pattern repeats every 3 pendulums, and at a quarter every 4. At the full minute every pendulum has made a whole number of swings, and they line up again.</p>
@@ -1173,10 +1182,12 @@
       </div>
     </section>
 
-    <!-- 30 Euler's formula -->
-    <section class="viz" id="euler" style="--accent: var(--green)">
+    <!-- Euler's formula -->
+    <section class="viz" id="euler" style="--accent: var(--green)"
+      data-group="motion" data-tags="complex numbers, circles, limits, π"
+      data-short="Euler" data-blurb="How e^(iπ) lands on −1">
       <div class="viz-text">
-        <p class="kicker"><b>30</b> e^(iπ) = −1</p>
+        <p class="kicker">e^(iπ) = −1</p>
         <h2>Euler's formula</h2>
         <p>Put $1 in a bank that pays 100% interest a year. Paid once, you end the year with $2. Paid monthly, about $2.61. Paid every instant, about $2.718: the number e. That's what e to a power means: e^x is what (1 + x/n)^n closes in on as n grows.</p>
         <p>Now make x imaginary: iπ. Multiplying by 1 + iπ/n hardly grows a number at all. Instead it turns it a little, plus a tiny stretch. Do that n times and you've turned about π radians, half a circle. As n grows the stretch fades away and you land exactly on −1. So e^(iπ) + 1 = 0, a single line linking five of the most important numbers in mathematics.</p>
@@ -1210,10 +1221,12 @@
       </div>
     </section>
 
-    <!-- 31 Taylor series -->
-    <section class="viz" id="taylor" style="--accent: var(--violet)">
+    <!-- Taylor series -->
+    <section class="viz" id="taylor" style="--accent: var(--violet)"
+      data-group="motion" data-tags="limits"
+      data-short="Taylor" data-blurb="Polynomials that copy curves">
       <div class="viz-text">
-        <p class="kicker"><b>31</b> Polynomials in disguise</p>
+        <p class="kicker">Polynomials in disguise</p>
         <h2>Taylor series</h2>
         <p>A computer can only add, subtract, multiply and divide, so how does it find sin x? One way is a polynomial that copies sin x at a single point: the same height, the same slope, the same bend, and so on for as many terms as you like. Every extra term makes the copy hug the curve over a wider stretch.</p>
         <p>For sin x and eˣ, enough terms copy the whole curve. For 1/(1 + x²) they can't: around 0 the copy falls apart past x = 1, even though the curve is perfectly smooth. The trouble hides off the number line, at the imaginary numbers ±i, where the function divides by zero. A series only reaches as far as the nearest trouble.</p>
@@ -1247,10 +1260,12 @@
       </div>
     </section>
 
-    <!-- 32 Benford's law -->
-    <section class="viz" id="benford" style="--accent: var(--amber)">
+    <!-- Benford's law -->
+    <section class="viz" id="benford" style="--accent: var(--amber)"
+      data-group="chance" data-tags="surprises, sequences"
+      data-short="Benford" data-blurb="Why so many numbers start with 1">
       <div class="viz-text">
-        <p class="kicker"><b>32</b> Why 1 comes first</p>
+        <p class="kicker">Why 1 comes first</p>
         <h2>Benford's law</h2>
         <p>Take the populations of towns, the lengths of rivers or the numbers in a company's accounts, and look only at the first digit. You'd expect each digit from 1 to 9 to lead about one time in nine. Instead about 30% start with 1, and fewer than 5% start with 9.</p>
         <p>The reason is growth. Something that grows by a steady percentage spends a long time between 1 and 2, because doubling takes a while, but it rushes from 9 to 10, an 11% step. On a logarithmic scale, the stretch from 1 to 2 covers 30.1% of the way to 10. Powers of 2, Fibonacci numbers and factorials all follow the law exactly in the long run.</p>
@@ -1283,10 +1298,12 @@
       </div>
     </section>
 
-    <!-- 33 Diffusion-limited aggregation -->
-    <section class="viz" id="dla" style="--accent: var(--cyan)">
+    <!-- Diffusion-limited aggregation -->
+    <section class="viz" id="dla" style="--accent: var(--cyan)"
+      data-group="dynamics" data-tags="randomness, nature"
+      data-short="Crystals" data-blurb="Crystals grown from random walks">
       <div class="viz-text">
-        <p class="kicker"><b>33</b> Random walks that stick</p>
+        <p class="kicker">Random walks that stick</p>
         <h2>Growing crystals</h2>
         <p>Put one sticky particle in the middle. Release another far away and let it wander at random, one step in any direction, over and over, until it bumps into the first and sticks. Then release the next one.</p>
         <p>You might expect a round blob. Instead you get branching arms, because the tips stick out and catch wandering particles before they can reach the gaps between branches. The same process shapes copper grown by electroplating, mineral dendrites in rock and the branching scars of electric discharges.</p>
@@ -1320,10 +1337,12 @@
       </div>
     </section>
 
-    <!-- 34 Brachistochrone -->
-    <section class="viz" id="cycloid" style="--accent: var(--pink)">
+    <!-- Brachistochrone -->
+    <section class="viz" id="cycloid" style="--accent: var(--pink)"
+      data-group="motion" data-tags="physics, surprises"
+      data-short="Quickest path" data-blurb="The quickest way down">
       <div class="viz-text">
-        <p class="kicker"><b>34</b> The quickest way down</p>
+        <p class="kicker">The quickest way down</p>
         <h2>The brachistochrone</h2>
         <p>A bead slides without friction from A down to B. Which shape of track gets it there first? The straight line is the shortest, but the bead starts out slowly. A steeper start builds speed sooner, but too steep wastes distance.</p>
         <p>In 1696 Johann Bernoulli challenged the mathematicians of Europe to find the answer. Newton, Leibniz, his brother Jakob and others solved it: the fastest track is a cycloid, the curve traced by a point on the rim of a rolling wheel. Galileo had guessed an arc of a circle, which comes close but loses.</p>
@@ -1353,10 +1372,12 @@
       </div>
     </section>
 
-    <!-- 35 Apollonian gasket -->
-    <section class="viz" id="apollonian" style="--accent: var(--green)">
+    <!-- Apollonian gasket -->
+    <section class="viz" id="apollonian" style="--accent: var(--green)"
+      data-group="fractals" data-tags="circles, recursion, infinity"
+      data-short="Circles" data-blurb="Circles all the way down">
       <div class="viz-text">
-        <p class="kicker"><b>35</b> Circles all the way down</p>
+        <p class="kicker">Circles all the way down</p>
         <h2>The Apollonian gasket</h2>
         <p>Draw three circles that touch each other inside a big one. Each curved triangle between them has room for exactly one circle that touches all three of its sides. Fill every gap, then every new gap, forever.</p>
         <p>Measure a circle's curvature as 1 ÷ radius, so smaller circles curve more. René Descartes found a simple rule linking four touching circles, and it leads somewhere surprising: if the first four curvatures are whole numbers, every circle in the gasket has a whole-number curvature too. The outer circle counts as negative because it curves the other way.</p>
@@ -1383,6 +1404,8 @@
       </div>
     </section>
 
+    <nav class="next-tab" data-ctl="next-tab" aria-label="Next tab" hidden></nav>
+
   </main>
 
   <footer class="footer">
@@ -1390,6 +1413,7 @@
   </footer>
 
   <script src="js/core.js"></script>
+  <script src="js/nav.js"></script>
   <script src="js/tesseract.js"></script>
   <script src="js/dragon.js"></script>
   <script src="js/langton.js"></script>
