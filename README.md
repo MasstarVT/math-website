@@ -15,6 +15,10 @@ Interactive visualizations of mathematics you can watch move:
 9. **Prime spirals**: primes plotted at (n, n) in polar coordinates, making spirals and rays.
 10. **The chaos game**: random jumps that build the Sierpinski triangle, other fractals and a fern.
 11. **The bell curve**: a Galton board filling bins that approach the normal distribution.
+12. **The law of large numbers**: coins flipped up to a million times, closing in on 50% heads while heads minus tails drifts apart.
+13. **The Monty Hall problem**: staying versus switching, with 3, 10 or 100 doors.
+14. **Buffon's needle**: estimating π by dropping needles on a lined floor, or darts at a circle in a square.
+15. **The birthday paradox**: random rooms of people against the exact chance of a shared birthday.
 
 Plain HTML, CSS and JavaScript. No build step and no dependencies.
 

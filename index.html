@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unfolded: math you can watch</title>
-  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, Fourier circles, the butterfly effect, prime spirals, fractals and the bell curve.">
+  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, Fourier circles, the butterfly effect, prime spirals, fractals, the bell curve, coin flips, the Monty Hall problem, Buffon's needle and the birthday paradox.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' fill='none' stroke='%23ffb454' stroke-width='2'/%3E%3Crect x='10' y='10' width='12' height='12' fill='none' stroke='%236ee7ff' stroke-width='2'/%3E%3Cpath d='M3 3l7 7M29 3l-7 7M3 29l7-7M29 29l-7-7' stroke='%23ece8df' stroke-width='1.5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,13 +27,17 @@
       <a href="#primes">09 Primes</a>
       <a href="#chaos">10 Chaos game</a>
       <a href="#galton">11 Bell curve</a>
+      <a href="#coins">12 Coin flips</a>
+      <a href="#monty">13 Monty Hall</a>
+      <a href="#buffon">14 Needles</a>
+      <a href="#birthday">15 Birthdays</a>
     </div>
   </nav>
 
   <header class="hero" id="top">
     <p class="eyebrow">Interactive mathematics</p>
     <h1>Unfolded</h1>
-    <p class="lede">Eleven ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
+    <p class="lede">Fifteen ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
     <ol class="toc">
       <li><a href="#tesseract"><span>01</span>A cube from the fourth dimension</a></li>
       <li><a href="#dragon"><span>02</span>A dragon made of right angles</a></li>
@@ -46,6 +50,10 @@
       <li><a href="#primes"><span>09</span>Spirals hiding in the primes</a></li>
       <li><a href="#chaos"><span>10</span>Order from random dice rolls</a></li>
       <li><a href="#galton"><span>11</span>Where randomness piles up</a></li>
+      <li><a href="#coins"><span>12</span>Why a coin settles on 50%</a></li>
+      <li><a href="#monty"><span>13</span>The door you should switch to</a></li>
+      <li><a href="#buffon"><span>14</span>Finding π by dropping needles</a></li>
+      <li><a href="#birthday"><span>15</span>Why 23 people probably share a birthday</a></li>
     </ol>
   </header>
 
@@ -480,6 +488,154 @@
       </div>
     </section>
 
+
+    <!-- 12 Coin flips -->
+    <section class="viz" id="coins" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>12</b> Luck in the long run</p>
+        <h2>The law of large numbers</h2>
+        <p>Flip a fair coin 10 times and getting 7 heads, 70%, is nothing special. Flip it 100 times and 60% still happens. But keep flipping and the share of heads gets squeezed toward 50%. After a million flips it's almost always within a tenth of a percent.</p>
+        <p>Here's the strange part. The share closes in on 50%, but heads minus tails does not close in on zero. It tends to drift further away, growing like the square root of the number of flips. The coin never makes up for a run of tails. The run just gets drowned out by everything that comes after it.</p>
+        <p>Switch the chart to Heads − tails to watch the gap grow while the percentage settles.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Running share of heads for several coins, flipped up to a million times each"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Each line is one coin, flipped again and again</span><span>Shaded: where 95% of coins should be. Each gridline is 10× more flips.</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">Flip once</button>
+          <button type="button" class="btn ghost" data-ctl="tenfold">10× more flips</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Coins</span>
+          <div class="seg" data-ctl="runs">
+            <button type="button" aria-pressed="false" data-value="1">1</button>
+            <button type="button" aria-pressed="true" data-value="5">5</button>
+            <button type="button" aria-pressed="false" data-value="20">20</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="control-label">Chart</span>
+          <div class="seg" data-ctl="view">
+            <button type="button" aria-pressed="true" data-value="share">% heads</button>
+            <button type="button" aria-pressed="false" data-value="gap">Heads − tails</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="1" max="10" step="0.5" value="4">
+        </label>
+      </div>
+    </section>
+
+    <!-- 13 Monty Hall -->
+    <section class="viz" id="monty" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>13</b> Should you switch?</p>
+        <h2>The Monty Hall problem</h2>
+        <p>A game show hides a car behind one of three doors and goats behind the other two. You pick a door. The host, who knows where the car is, opens one of the other doors to show a goat and lets you switch to the last closed door. Two doors are left, so it must be 50–50. Right?</p>
+        <p>Switching wins 2 times out of 3. Your first pick is right only 1 time in 3, and showing you a goat doesn't change that. The other 2 times, the car is behind the one door the host was careful not to open. In every game, exactly one of the two choices wins.</p>
+        <p>Still not convinced? Try 100 doors. You pick one, the host opens 98 goats and leaves one other door shut. Would you stick with your first guess?</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Monty Hall games played over and over, with running win rates for staying and switching"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Gold: the car. Blue ring: your first pick. Pink ring: the door you could switch to.</span><span>White ticks: where each bar should settle</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">One game</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Doors</span>
+          <div class="seg" data-ctl="doors">
+            <button type="button" aria-pressed="true" data-value="3">3</button>
+            <button type="button" aria-pressed="false" data-value="10">10</button>
+            <button type="button" aria-pressed="false" data-value="100">100</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="-0.3" max="3" step="0.01" value="0">
+        </label>
+      </div>
+    </section>
+
+    <!-- 14 Buffon's needle -->
+    <section class="viz" id="buffon" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>14</b> π from a pile of needles</p>
+        <h2>Buffon's needle</h2>
+        <p>Draw lines on the floor, one needle-length apart, and drop needles at random. Some land across a line and some don't. In the 1700s the Comte de Buffon worked out that the chance of a crossing is exactly 2/π, about 64%. Count the crossings and you can work backwards to π, without a circle in sight. It sneaks in through the angle: a needle can point in any direction around a circle.</p>
+        <p>It's a very slow way to find π. Ten times more needles buys only about half an extra correct digit. In 1901 Mario Lazzarini claimed 3.1415929 from 3,408 needles, which almost certainly means he stopped at a lucky moment.</p>
+        <p>Darts work too. Throw them at a square with a circle inside, and the share that lands in the circle is π/4.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Needles dropped on a lined floor, with the running estimate of pi"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Pink: crossed a line, or landed in the circle. Blue: didn't.</span><span>The newest one is white</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Throw</span>
+          <div class="seg" data-ctl="mode">
+            <button type="button" aria-pressed="true" data-value="needles">Needles</button>
+            <button type="button" aria-pressed="false" data-value="darts">Darts</button>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">Drop 1</button>
+          <button type="button" class="btn ghost" data-ctl="thousand">Drop 1,000</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Needle length <output data-ctl="length-out"></output></span>
+          <input type="range" data-ctl="length" min="0.2" max="1" step="0.05" value="1">
+        </label>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0" max="3" step="0.01" value="0.5">
+        </label>
+      </div>
+    </section>
+
+    <!-- 15 Birthday paradox -->
+    <section class="viz" id="birthday" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>15</b> Shared birthdays</p>
+        <h2>The birthday paradox</h2>
+        <p>How many people do you need in a room before two of them probably share a birthday? Many people guess something near 183, half of 365. The real answer is 23.</p>
+        <p>The trick is that you're not looking for someone who shares your birthday. Any pair will do, and 23 people make 253 pairs. Each pair has only a 1 in 365 chance of matching, but with that many pairs the chance of at least one match passes 50%. With 70 people a match is 99.9% certain.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="A calendar filling with random birthdays, and the chance of a shared birthday by room size"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Each square is a day. Purple: two or more people share it.</span><span>White curve: the exact chance. Dots: what the rooms here showed.</span></figcaption>
+      </figure>
+      <div class="controls">
+        <label class="control">
+          <span class="control-label">People in the room <output data-ctl="people-out"></output></span>
+          <input type="range" data-ctl="people" min="2" max="70" step="1" value="23">
+        </label>
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">One room</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="-0.3" max="3" step="0.01" value="0.5">
+        </label>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -498,5 +654,9 @@
   <script src="js/primes.js"></script>
   <script src="js/chaos.js"></script>
   <script src="js/galton.js"></script>
+  <script src="js/coins.js"></script>
+  <script src="js/monty.js"></script>
+  <script src="js/buffon.js"></script>
+  <script src="js/birthday.js"></script>
 </body>
 </html>
