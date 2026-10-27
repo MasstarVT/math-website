@@ -298,6 +298,21 @@ a { color: inherit; }
 
 .tags .chip[aria-pressed="true"] span { color: inherit; }
 
+/* Phones: one row of tags to swipe through instead of a wall of them. */
+@media (max-width: 720px) {
+  .chips.tags {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 16px calc(-1 * var(--gutter)) 0;
+    padding: 0 var(--gutter);
+  }
+
+  .tags::-webkit-scrollbar { display: none; }
+
+  .tags .chip { flex: none; }
+}
+
 .index-group { margin-top: 44px; }
 
 .index-heading {

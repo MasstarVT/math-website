@@ -172,10 +172,14 @@
 
   function render() {
     var terms = normalize(state.query).trim().split(' ').filter(Boolean);
+    // "All" is an overview: just the index, however many sections there are.
+    // A card or link there opens the section's own tab (see reveal).
+    var overview = state.group === 'all';
     var shown = 0;
     items.forEach(function (it) {
       it.on = matches(it, terms);
-      it.section.hidden = it.card.hidden = it.link.hidden = !it.on;
+      it.card.hidden = it.link.hidden = !it.on;
+      it.section.hidden = !it.on || overview;
       if (it.on) shown++;
     });
 
@@ -260,8 +264,9 @@
   }
 
   function selectGroup(id, toTop) {
-    // Readers already down among the sections go to the top of the new tab;
-    // readers at the index stay put and watch it change.
+    // Readers already down among the sections go to the top of the new tab,
+    // or back up to the index for "All". Readers at the index stay put and
+    // watch it change.
     var reading = toTop || main.getBoundingClientRect().top < barHeight();
     state.group = id;
     var tabHasTag = items.some(function (it) {
@@ -272,10 +277,11 @@
     var linked = itemById[decodeURIComponent(location.hash.slice(1))];
     try {
       history.replaceState(null, '', (id === 'all' ? location.pathname : '?tab=' + id) +
-        (linked && inGroup(linked, id) ? location.hash : ''));
+        (linked && linked.group.id === id ? location.hash : ''));
     } catch (e) { /* file:// pages may refuse; the tab still works */ }
     render();
-    if (reading) jumpTo(main.getBoundingClientRect().top + window.scrollY - barHeight());
+    if (reading && id === 'all') openFinder(true);
+    else if (reading) jumpTo(main.getBoundingClientRect().top + window.scrollY - barHeight());
   }
 
   tagRow.addEventListener('click', function (e) {
@@ -307,8 +313,8 @@
       if (!first) return;
       e.preventDefault();
       search.blur();
-      if (location.hash === '#' + first.id) first.section.scrollIntoView();
-      else location.hash = first.id;
+      if (location.hash !== '#' + first.id) location.hash = first.id;
+      else if (!reveal()) first.section.scrollIntoView();
     } else if (e.key === 'Escape' && !search.value) {
       search.blur();
     }
@@ -325,9 +331,9 @@
     if (state.group !== 'all') selectGroup('all');
   });
 
-  function openFinder() {
+  function openFinder(noFocus) {
     jumpTo(finder.getBoundingClientRect().top + window.scrollY - barHeight() - 24);
-    search.focus({ preventScroll: true });
+    if (noFocus !== true) search.focus({ preventScroll: true });
   }
   V.ctl(bar, 'find').addEventListener('click', openFinder);
   document.addEventListener('keydown', function (e) {
@@ -338,18 +344,24 @@
     openFinder();
   });
 
-  // A link to a section that's filtered out switches to that section's tab.
+  // A link to a section that's hidden, by a filter or by the "All" overview,
+  // opens that section's tab and jumps to it.
   function reveal() {
     var it = itemById[decodeURIComponent(location.hash.slice(1))];
     if (!it || !it.section.hidden) return false;
     state.tag = '';
     state.query = search.value = '';
-    if (!inGroup(it, state.group)) selectGroup(it.group.id);
+    if (state.group === 'all' || !inGroup(it, state.group)) selectGroup(it.group.id);
     else render();
     jumpToSection(it.section);
     return true;
   }
   window.addEventListener('hashchange', reveal);
+  // Clicking a link to the hash already in the URL fires no hashchange.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute('href') === location.hash && reveal()) e.preventDefault();
+  });
 
   // Keep anchor jumps clear of the sticky bar, whatever height it wraps to.
   new ResizeObserver(function () {

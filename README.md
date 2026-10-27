@@ -2,7 +2,7 @@
 
 **Live site: https://masstarvt.github.io/math-website/**
 
-Interactive visualizations of mathematics you can watch move, sorted into tabs. Search by name or idea ("sunflower", "π", "weather"), or filter by tags like recursion, randomness or surprises.
+Interactive visualizations of mathematics you can watch move, sorted into tabs. The front page is an index: pick a tab to read through one topic, or a card to jump straight to one. Search by name or idea ("sunflower", "π", "weather"), or filter by tags like recursion, randomness or surprises.
 
 **Geometry**
 - **The tesseract**: a 4D hypercube (plus the 16-cell and 24-cell) rotating through the fourth dimension, drawn as its 3D shadow.
