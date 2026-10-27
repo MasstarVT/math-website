@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unfolded: math you can watch</title>
+  <meta name="description" content="Interactive visualizations of beautiful mathematics: a rotating tesseract, the dragon curve, Langton's ant, the Mandelbrot set, the golden angle and times tables on a circle.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' fill='none' stroke='%23ffb454' stroke-width='2'/%3E%3Crect x='10' y='10' width='12' height='12' fill='none' stroke='%236ee7ff' stroke-width='2'/%3E%3Cpath d='M3 3l7 7M29 3l-7 7M3 29l7-7M29 29l-7-7' stroke='%23ece8df' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="topbar" aria-label="Sections">
+    <a class="brand" href="#top">Unfolded</a>
+    <div class="topnav">
+      <a href="#tesseract">01 Tesseract</a>
+      <a href="#dragon">02 Dragon</a>
+      <a href="#langton">03 Ant</a>
+      <a href="#mandelbrot">04 Mandelbrot</a>
+      <a href="#golden">05 Golden angle</a>
+      <a href="#times">06 Times tables</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <p class="eyebrow">Interactive mathematics</p>
+    <h1>Unfolded</h1>
+    <p class="lede">Six ideas from mathematics that are easier to see than to explain. Spin them, drag them, and change the numbers.</p>
+    <ol class="toc">
+      <li><a href="#tesseract"><span>01</span>A cube from the fourth dimension</a></li>
+      <li><a href="#dragon"><span>02</span>A dragon made of right angles</a></li>
+      <li><a href="#langton"><span>03</span>An ant that builds a highway</a></li>
+      <li><a href="#mandelbrot"><span>04</span>An edge that never ends</a></li>
+      <li><a href="#golden"><span>05</span>How a sunflower packs its seeds</a></li>
+      <li><a href="#times"><span>06</span>Times tables that draw a heart</a></li>
+    </ol>
+  </header>
+
+  <main>
+
+    <!-- 01 Tesseract -->
+    <section class="viz" id="tesseract" style="--accent: var(--cyan)">
+      <div class="viz-text">
+        <p class="kicker"><b>01</b> Four dimensions</p>
+        <h2>The tesseract</h2>
+        <p>A square is a line dragged sideways. A cube is a square dragged upward. Drag a cube in a fourth direction, at right angles to all three you know, and you get a tesseract: 16 corners, 32 edges and 8 cubes for faces.</p>
+        <p>We can't see four dimensions, but we can see a shadow of one. A cube's shadow can be a small square inside a big one. A tesseract's shadow is a small cube inside a big one. Rotate it through the fourth dimension and the inner cube swells until it becomes the outer one. It looks like it's turning inside out, but every cell stays a perfect cube. Only the shadow bends.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas class="is-draggable" aria-label="A rotating tesseract, projected into three and then two dimensions"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Drag to orbit</span><span>Blue edges are far away in the 4th dimension, amber ones are close</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Shape</span>
+          <div class="seg" data-ctl="shape">
+            <button type="button" aria-pressed="true" data-value="tesseract">Tesseract</button>
+            <button type="button" aria-pressed="false" data-value="cell16">16-cell</button>
+            <button type="button" aria-pressed="false" data-value="cell24">24-cell</button>
+          </div>
+        </div>
+        <div class="control">
+          <span class="control-label">Spin through the 4th dimension</span>
+          <div class="chips">
+            <button type="button" class="chip" aria-pressed="true" data-plane="xw">XW plane</button>
+            <button type="button" class="chip" aria-pressed="false" data-plane="yw">YW plane</button>
+            <button type="button" class="chip" aria-pressed="false" data-plane="zw">ZW plane</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0.1" max="3" step="0.05" value="1">
+        </label>
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="quarter">Turn 90° in XW</button>
+          <button type="button" class="btn ghost" data-ctl="play">Pause</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Dragon curve -->
+    <section class="viz" id="dragon" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>02</b> Rotate 90°, repeat</p>
+        <h2>The dragon curve</h2>
+        <p>Fold a strip of paper in half, then in half again, and again. Unfold it so every crease makes a right angle and look at it edge-on. You've made a dragon.</p>
+        <p>You don't need the paper. Start with one line. Copy the whole shape, swing the copy 90° around its last point, and attach it. Then do the same to the new shape. After a dozen rounds a coiled, clawed figure appears, and the line never once crosses itself.</p>
+        <p>Four dragons rotated around their shared starting point interlock perfectly, without a single overlap.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="The dragon curve being built by repeated 90 degree rotations"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Each color is one round of copy-and-rotate</span><span>It stops at round 15. Step back and forth, or drag the round slider.</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="back" aria-label="Previous round">← Back</button>
+          <button type="button" class="btn ghost" data-ctl="step" aria-label="Next round">Next →</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Round <output data-ctl="round-out"></output></span>
+          <input type="range" data-ctl="round" min="0" max="15" step="1" value="0">
+        </label>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0.25" max="4" step="0.05" value="1">
+        </label>
+        <div class="control">
+          <span class="control-label">Color by</span>
+          <div class="seg" data-ctl="color">
+            <button type="button" aria-pressed="true" data-value="gen">Round</button>
+            <button type="button" aria-pressed="false" data-value="path">Distance along the line</button>
+          </div>
+        </div>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false" data-ctl="four">Four dragons</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Langton's ant -->
+    <section class="viz" id="langton" style="--accent: var(--amber)">
+      <div class="viz-text">
+        <p class="kicker"><b>03</b> Two rules, ten thousand steps</p>
+        <h2>Langton's ant</h2>
+        <p>An ant walks on a grid of blank squares. On a blank square it turns 90° right, paints the square, and steps forward. On a painted square it turns 90° left, wipes it clean, and steps forward. That's the whole program.</p>
+        <p>For about 10,000 steps the result looks like noise. Then the ant starts building a "highway": a 104-step pattern that repeats and marches off diagonally forever. Every starting grid anyone has tried ends up the same way, but nobody has proved it has to.</p>
+        <p>Give the ant more colors, one turn for each, and it builds other things entirely.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Langton's ant walking on a grid"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>The grid wraps around at the edges</span><span>The white square is the ant</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="buttons">
+          <button type="button" class="btn" data-ctl="play">Pause</button>
+          <button type="button" class="btn ghost" data-ctl="one">One step</button>
+          <button type="button" class="btn ghost" data-ctl="reset">Start over</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Speed <output data-ctl="speed-out"></output></span>
+          <input type="range" data-ctl="speed" min="0" max="4.3" step="0.01" value="1.4">
+        </label>
+        <div class="control">
+          <span class="control-label">Rule, one letter per color</span>
+          <div class="seg mono" data-ctl="rule">
+            <button type="button" aria-pressed="true" data-value="RL">RL classic</button>
+            <button type="button" aria-pressed="false" data-value="LLRR">LLRR</button>
+            <button type="button" aria-pressed="false" data-value="RLR">RLR</button>
+            <button type="button" aria-pressed="false" data-value="LRRRRRLLR">LRRRRRLLR</button>
+            <button type="button" aria-pressed="false" data-value="RRLLLRLLLRRR">RRLLLRLLLRRR</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Mandelbrot -->
+    <section class="viz" id="mandelbrot" style="--accent: var(--violet)">
+      <div class="viz-text">
+        <p class="kicker"><b>04</b> z → z² + c</p>
+        <h2>The Mandelbrot set</h2>
+        <p>Pick a point c on the plane. Start at zero, square it, add c, and repeat. Either the numbers stay small forever or they run off to infinity. The points that stay small are the Mandelbrot set, painted black here. The colors show how quickly every other point escapes.</p>
+        <p>The edge never gets simpler. Zoom in anywhere along it and you find spirals, seahorses, lightning and tiny copies of the whole set, each one slightly different.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas class="is-draggable" aria-label="The Mandelbrot set, zoomable"></canvas>
+        <div class="readout" data-ctl="readout"></div>
+        <figcaption><span>Drag to move · scroll or pinch to zoom · double-click to dive in</span></figcaption>
+      </figure>
+      <div class="controls">
+        <div class="control">
+          <span class="control-label">Go to</span>
+          <div class="seg" data-ctl="preset">
+            <button type="button" aria-pressed="true" data-value="whole">Whole set</button>
+            <button type="button" aria-pressed="false" data-value="seahorse">Seahorse valley</button>
+            <button type="button" aria-pressed="false" data-value="elephant">Elephant valley</button>
+            <button type="button" aria-pressed="false" data-value="spiral">Double spiral</button>
+            <button type="button" aria-pressed="false" data-value="mini">A tiny copy</button>
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="zoom-in">Zoom in</button>
+          <button type="button" class="btn ghost" data-ctl="zoom-out">Zoom out</button>
+        </div>
+        <label class="control">
+          <span class="control-label">Iterations <output data-ctl="iter-out"></output></span>
+          <input type="range" data-ctl="iter" min="50" max="2000" step="10" value="400">
+        </label>
+      </div>
+    </section>
+
+    <!-- 05 Golden angle -->
+    <section class="viz" id="golden" style="--accent: var(--green)">
+      <div class="viz-text">
+        <p class="kicker"><b>05</b> 137.507764…°</p>
+        <h2>The golden angle</h2>
+        <p>Plant a seed, turn by a fixed angle, plant the next one a little farther out, and repeat. Most angles waste space: the seeds fall into straight spokes with gaps between them. One angle, about 137.5°, never lines up at all, so the seeds pack evenly. Sunflowers, daisies and pinecones grow this way.</p>
+        <p>Nudge the angle by a tenth of a degree and the spokes come back. Count the spiral arms in the golden pattern and you get Fibonacci numbers: 13, 21, 34, 55.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Seeds arranged by a repeating turn angle"></canvas>
+        <figcaption><span>Try "21 arms" and "34 arms" with the golden angle</span></figcaption>
+      </figure>
+      <div class="controls">
+        <label class="control">
+          <span class="control-label">Turn per seed <output data-ctl="angle-out"></output></span>
+          <input type="range" data-ctl="angle" min="30" max="180" step="0.01" value="137.51">
+        </label>
+        <div class="control">
+          <span class="control-label">Try</span>
+          <div class="seg" data-ctl="preset">
+            <button type="button" aria-pressed="true" data-value="golden">Golden</button>
+            <button type="button" aria-pressed="false" data-value="137.3">137.3°</button>
+            <button type="button" aria-pressed="false" data-value="137.7">137.7°</button>
+            <button type="button" aria-pressed="false" data-value="135">135°</button>
+            <button type="button" aria-pressed="false" data-value="120">120°</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Seeds <output data-ctl="seeds-out"></output></span>
+          <input type="range" data-ctl="seeds" min="50" max="3000" step="10" value="1200">
+        </label>
+        <div class="control">
+          <span class="control-label">Color by</span>
+          <div class="seg" data-ctl="color">
+            <button type="button" aria-pressed="true" data-value="order">Order planted</button>
+            <button type="button" aria-pressed="false" data-value="21">21 arms</button>
+            <button type="button" aria-pressed="false" data-value="34">34 arms</button>
+          </div>
+        </div>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="false" data-ctl="sweep">Sweep through the golden angle</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 Times tables -->
+    <section class="viz" id="times" style="--accent: var(--pink)">
+      <div class="viz-text">
+        <p class="kicker"><b>06</b> k → m·k (mod n)</p>
+        <h2>Times tables on a circle</h2>
+        <p>Put n points around a circle and number them. Draw a line from each point k to the point m × k, wrapping around the circle when you pass n. Times two draws a heart-shaped cardioid. Times three draws a nephroid with two lobes, times four has three.</p>
+        <p>Let m slide between whole numbers and the curves melt into one another. Some big multipliers bring back the small ones in disguise.</p>
+      </div>
+      <figure class="viz-stage">
+        <canvas aria-label="Chords of a modular times table drawn on a circle"></canvas>
+        <figcaption><span>Each chord joins k to m·k</span></figcaption>
+      </figure>
+      <div class="controls">
+        <label class="control">
+          <span class="control-label">Multiplier m <output data-ctl="mult-out"></output></span>
+          <input type="range" data-ctl="mult" min="0" max="100" step="0.01" value="2">
+        </label>
+        <div class="buttons">
+          <button type="button" class="btn ghost" data-ctl="prev" aria-label="Previous whole-number multiplier">← m − 1</button>
+          <button type="button" class="btn ghost" data-ctl="next" aria-label="Next whole-number multiplier">m + 1 →</button>
+        </div>
+        <div class="control">
+          <span class="control-label">Try</span>
+          <div class="seg mono" data-ctl="preset">
+            <button type="button" aria-pressed="false" data-value="2">×2</button>
+            <button type="button" aria-pressed="false" data-value="3">×3</button>
+            <button type="button" aria-pressed="false" data-value="4">×4</button>
+            <button type="button" aria-pressed="false" data-value="21">×21</button>
+            <button type="button" aria-pressed="false" data-value="34">×34</button>
+            <button type="button" aria-pressed="false" data-value="99">×99</button>
+          </div>
+        </div>
+        <label class="control">
+          <span class="control-label">Points n <output data-ctl="points-out"></output></span>
+          <input type="range" data-ctl="points" min="10" max="500" step="1" value="200">
+        </label>
+        <div class="chips">
+          <button type="button" class="chip" aria-pressed="true" data-ctl="animate">Keep increasing m</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Unfolded, made by MasstarVT. Everything is drawn live in your browser with plain JavaScript.</p>
+  </footer>
+
+  <script src="js/core.js"></script>
+  <script src="js/tesseract.js"></script>
+  <script src="js/dragon.js"></script>
+  <script src="js/langton.js"></script>
+  <script src="js/mandelbrot.js"></script>
+  <script src="js/golden.js"></script>
+  <script src="js/times.js"></script>
+</body>
+</html>
