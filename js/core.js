@@ -22,17 +22,28 @@
     };
     var raf = 0;
     var last = 0;
+    // The full-size backing store is made the first time the canvas comes
+    // near the screen and given back while its tab is hidden. Browsers cap
+    // total canvas memory, and Safari's cap is well below what every canvas
+    // on the page would need at once.
+    var seen = false;
 
     function resize() {
       var rect = canvas.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
+      if (!rect.width || !rect.height) {
+        if (seen && (canvas.width || canvas.height)) {
+          canvas.width = 0;
+          canvas.height = 0;
+        }
+        return;
+      }
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       var w = Math.round(rect.width * dpr);
       var h = Math.round(rect.height * dpr);
       stage.width = rect.width;
       stage.height = rect.height;
       stage.dpr = dpr;
-      if (canvas.width !== w || canvas.height !== h) {
+      if (seen && (canvas.width !== w || canvas.height !== h)) {
         canvas.width = w;
         canvas.height = h;
       }
@@ -65,6 +76,10 @@
     new ResizeObserver(resize).observe(canvas);
     new IntersectionObserver(function (entries) {
       stage.visible = entries[entries.length - 1].isIntersecting;
+      if (stage.visible && !seen) {
+        seen = true;
+        resize();
+      }
       if (stage.visible) start(); else stop();
     }, { rootMargin: '120px 0px' }).observe(canvas);
 
